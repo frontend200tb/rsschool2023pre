@@ -28,6 +28,7 @@ html {
   background-color: #fff;
 }
 
+
 /*********************
 Container
 *********************/
@@ -36,6 +37,7 @@ Container
   width: 1440px;
   background-color: #aaa;
 }
+
 
 /*********************
 Header
@@ -94,6 +96,7 @@ Header
   cursor: pointer;
 }
 
+
 /*********************
 Welcome
 *********************/
@@ -126,6 +129,24 @@ Welcome
   letter-spacing: 3px;
   text-transform: uppercase;
   text-align: center;
+}
+
+
+/*********************
+About
+*********************/
+.about {
+  height: 837px;
+}
+
+.section-title {
+  font-family: 'Forum', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-align: center;
+
 }
 
 /*********************
