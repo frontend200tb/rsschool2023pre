@@ -13,9 +13,9 @@ html {
 
 /* переменные для цветов */
 :root {
-  --txt-color: #fff;
-  --bg-black: #000;
-  --bg-dark: #0c0c0e;
+  --white: #fff;
+  --black: #000;
+  --dark: #0c0c0e;
   --bg-gold: #bb945f;
   --bg-gray: #8e8e8e;
 }
@@ -24,8 +24,8 @@ html {
   font-family: 'Inter', Verdana, sans-serif;
   font-weight: 400;
   font-size: 20px;
-  color: var(--txt-color);
-  background-color: #fff;
+  color: var(--black);
+  background-color: var(--bg-gray);
 }
 
 
@@ -38,6 +38,23 @@ Container
   background-color: #aaa;
 }
 
+.section-title {
+  height: 61px;
+  font-family: 'Forum', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 50px;
+  letter-spacing: 2px;
+  color: var(--dark);
+  text-align: center;
+}
+
+.section-title-line {
+  margin: 0 auto;
+  width: 50px;
+  height: 1px;
+  border-top: 1px solid var(--dark);
+}
 
 /*********************
 Header
@@ -48,7 +65,7 @@ Header
   justify-content: space-between;
   padding: 20px;
   height: 90px;
-  background-color: var(--bg-dark);
+  background-color: var(--dark);
 }
 
 .header__logo {
@@ -58,6 +75,7 @@ Header
   font-size: 30px;
   line-height: 50px;
   letter-spacing: 2px;
+  color: var(--white);
 }
 
 .header__nav {
@@ -81,7 +99,7 @@ Header
   font-size: 20px;
   line-height: 50px;
   letter-spacing: normal;
-  color: var(--txt-color);
+  color: var(--white);
   transition: color 0.5s;
 }
 
@@ -129,6 +147,7 @@ Welcome
   letter-spacing: 3px;
   text-transform: uppercase;
   text-align: center;
+  color: var(--white);
 }
 
 
@@ -136,17 +155,105 @@ Welcome
 About
 *********************/
 .about {
+  padding: 20px;
   height: 837px;
+  background-color: var(--white);
 }
 
-.section-title {
-  font-family: 'Forum', serif;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 40px;
-  letter-spacing: 2px;
+.about__text {
+  margin-top: 40px;
+  color: var(--black);
   text-align: center;
+}
 
+.about__slider {
+  margin-top: 20px;
+}
+
+.about__img {
+  width: 450px;
+  height: 560px;
+}
+
+.about__pagination {
+  margin: 40px auto 0;
+  width: 68px;
+  height: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.about__circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: var(--dark);
+}
+
+.about__circle.active {
+  background-color: var(--bg-gold);
+}
+
+
+/*********************
+Favorites
+*********************/
+.favorites {
+  padding: 20px;
+  height: 1439px;
+  background-color: var(--white);
+}
+
+.favorites__text {
+  margin-top: 40px;
+  font-weight: 700;
+  letter-spacing: 0px;
+  color: var(--black);
+}
+
+.favorites__form {
+  margin-top: 40px;
+  width: 700px;
+  height: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.faforites__form_item label {
+  margin-left: 20px;
+}
+
+.favorites__books {
+  margin-top: 40px;
+  height: 1150px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #999;
+}
+
+.favorites__book {
+  width: 590px;
+  height: 555px;
+  background-color: #fff;
+}
+
+.favorites__book_txt {
+  display: inline-block;
+  width: 550px;
+  height: 555px;
+  border: 1px solid var(--black);
+}
+
+.favorites__book_img {
+  display: inline-block;
+  margin-left: -170px;
+  width: 200px;
+  height: 300px;
+  text-align: right;
 }
 
 /*********************
