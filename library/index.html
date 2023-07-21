@@ -47,18 +47,25 @@
 		</div>
 	</header>
 
+
 	<main class="main">
 		<div class="container main__content">
 
 			<section class="welcome">
 				<div class="welcome__overlay"></div>		
-				<div class="welcome__bg"><h2 class="welcome__txt">Welcome<br>to the Brooklyn<br>Library</h2></div>
+				<div class="welcome__bg">
+					<h2 class="welcome__txt">
+					  <div>welcome&nbsp;</div>
+					  <div>to the Brooklyn</div>
+					  <div>library<div>
+					</h2>
+				</div>
 			</section>
 
 			<section id="about" class="about">
 				<h2 class="section-title">About</h2>
 				<div class="section-title-line"></div>
-				<div class="about__text">The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside</div>
+				<div class="about__txt">The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside</div>
 
 				<div class="about__slider">
 					<img src="assets/img/about1.jpg" alt="img1" class="about__img">
@@ -67,9 +74,15 @@
 				</div>
 
 				<div class="about__pagination">
-					<div class="about__circle active"></div>
-					<div class="about__circle"></div>
-					<div class="about__circle"></div>
+					<div class="about__btn">
+							<div class="about__circle active"></div>
+					</div>
+					<div class="about__btn">
+					  <div class="about__circle"></div>
+					</div>
+					<div class="about__btn">
+					  <div class="about__circle"></div>
+					</div>
 				</div>
 
 			</section>
@@ -80,51 +93,113 @@
         <div class="favorites__text">Pick favorites of season</div>
 
 				<div class="favorites__form">
+
 					<div class="faforites__form_item">
-					  <input id="winter" type="radio" name="seasons" checked>
-					  <label for="winter">Winter</label>
+					  <input id="winter" class="favorites__input" type="radio" name="seasons" checked>
+					  <label for="winter" class="favorites__label">Winter</label>
 					</div>
+
 					<div class="faforites__form_item">
-					  <input id="spring" type="radio" name="seasons">
-					  <label for="winter">Spring</label>
+					  <input id="spring" class="favorites__input" type="radio" name="seasons">
+					  <label for="spring" class="favorites__label">Spring</label>
 					</div>
+
 					<div class="faforites__form_item">
-					  <input id="summer" type="radio" name="seasons">
-					  <label for="winter">Summer</label>
+					  <input id="summer" class="favorites__input" type="radio" name="seasons">
+					  <label for="summer" class="favorites__label">Summer</label>
 					</div>
+
 					<div class="faforites__form_item">
-					  <input id="autumn" type="radio" name="seasons">
-					  <label for="winter">Autumn</label>
+					  <input id="autumn" class="favorites__input" type="radio" name="seasons">
+					  <label for="autumn" class="favorites__label">Autumn</label>
 					</div>
+
 				</div>
 
-				<div class="favorites__books">
+				<div class="favorites__books favorites__books-winter">
 
-					<div class="favorites__book">
-						<div class="favorites__book_txt"></div>
+					<div class="favorites__book">						
+						<div class="favorites__book_txt">
+							<div>
+								<div class="favorites__staff">Staff Picks</div>
+								<div class="favorites__staff__line"></div>
+								<div class="favorites__book-title">
+									<div>The Book Eaters</div>
+									<div>By Sunyi Dean</div>
+								</div>
+								<div class="favorites__book-description">An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death. Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart.</div>
+							</div>
+							
+							<div>
+								<button class="favorites__book-btn">Buy</button>
+							</div>
+						</div>
+
 						<div class="favorites__book_img">
-							<img src="assets/img/book1.jpg" alt="book1">
+							<img src="assets/img/book-winter-1.jpg" alt="book-winter-1">
 						</div>
 					</div>
 
 					<div class="favorites__book">
-						<div class="favorites__book_txt"></div>
+						<div class="favorites__book_txt">
+							<div>
+								<div class="favorites__staff">Staff Picks</div>
+								<div class="favorites__staff__line"></div>
+								<div class="favorites__book-title">
+									<div>The Book Eaters</div>
+									<div>By Sunyi Dean</div>
+								</div>
+								<div class="favorites__book-description">An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death. Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart.</div>
+							</div>
+							
+							<div>
+								<button class="favorites__book-btn">Buy</button>
+							</div>
+						</div>
 						<div class="favorites__book_img">
-							<img src="assets/img/book2.jpg" alt="book2">
+							<img src="assets/img/book-winter-2.jpg" alt="book-winter-2">
 						</div>
 					</div>
 
 					<div class="favorites__book">
-						<div class="favorites__book_txt"></div>
+						<div class="favorites__book_txt">
+							<div>
+								<div class="favorites__staff">Staff Picks</div>
+								<div class="favorites__staff__line"></div>
+								<div class="favorites__book-title">
+									<div>The Book Eaters</div>
+									<div>By Sunyi Dean</div>
+								</div>
+								<div class="favorites__book-description">An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death. Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart.</div>
+							</div>
+							
+							<div>
+								<button class="favorites__book-btn">Buy</button>
+							</div>
+						</div>
 						<div class="favorites__book_img">
-							<img src="assets/img/book3.jpg" alt="book3">
+							<img src="assets/img/book-winter-3.jpg" alt="book-winter-3">
 						</div>
 					</div>
 
 					<div class="favorites__book">
-						<div class="favorites__book_txt"></div>
+						<div class="favorites__book_txt">
+							<div>
+								<div class="favorites__staff">Staff Picks</div>
+								<div class="favorites__staff__line"></div>
+								<div class="favorites__book-title">
+									<div>The Book Eaters</div>
+									<div>By Sunyi Dean</div>
+								</div>
+								<div class="favorites__book-description">An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death. Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart.</div>
+							</div>
+							
+							<div>
+								<button class="favorites__book-btn">Buy</button>
+							</div>
+						</div>
 						<div class="favorites__book_img">
-							<img src="assets/img/book4.jpg" alt="book4">
+							<img src="assets/img/book-winter-4.jpg" alt="book-winter-4">
 						</div>						
 					</div>
 					
@@ -145,6 +220,7 @@
 			</section>
 		</div>
 	</main>
+
 
 	<footer class="footer">
 		<div class="container footer__content">footer</div>
