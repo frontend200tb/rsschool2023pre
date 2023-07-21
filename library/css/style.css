@@ -35,22 +35,20 @@ Container
 .container {
   margin: 0 auto;
   width: 1440px;
-  background-color: #aaa;
 }
 
 .section-title {
-  height: 61px;
   font-family: 'Forum', serif;
   font-weight: 400;
   font-size: 40px;
-  line-height: 50px;
+  line-height: 40px;
   letter-spacing: 2px;
   color: var(--dark);
   text-align: center;
 }
 
 .section-title-line {
-  margin: 0 auto;
+  margin: 20px auto 0;
   width: 50px;
   height: 1px;
   border-top: 1px solid var(--dark);
@@ -74,7 +72,7 @@ Header
   font-weight: 400;
   font-size: 30px;
   line-height: 50px;
-  letter-spacing: 2px;
+  letter-spacing: 0.6px;
   color: var(--white);
 }
 
@@ -89,7 +87,7 @@ Header
   justify-content: center;
   align-items: flex-end;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 30.5px;
   text-align: center;
   list-style-type: none;
 }
@@ -98,9 +96,13 @@ Header
   text-decoration: none;
   font-size: 20px;
   line-height: 50px;
-  letter-spacing: normal;
+  letter-spacing: 0px;
   color: var(--white);
   transition: color 0.5s;
+}
+
+.nav-link:hover {
+  border-bottom: 2px solid var(--white);
 }
 
 .header__icon-profile {
@@ -137,6 +139,8 @@ Welcome
 }
 
 .welcome__txt {
+  display: flex;
+  flex-direction: column;
   padding: 0 40px;
   width: 520px;
   height: 150px;
@@ -160,13 +164,18 @@ About
   background-color: var(--white);
 }
 
-.about__text {
+.about__txt {
   margin-top: 40px;
+  line-height: 40px;
+  letter-spacing: 0;
   color: var(--black);
   text-align: center;
 }
 
 .about__slider {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin-top: 20px;
 }
 
@@ -176,12 +185,22 @@ About
 }
 
 .about__pagination {
-  margin: 40px auto 0;
-  width: 68px;
-  height: 16px;
+  margin: 35px auto 0;
+  width: 78px;
+  height: 26px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.about__btn {
+  padding: 5px;
+  width: 26px;
+  height: 26px;
+}
+
+.about__btn:hover {
+  cursor: pointer;
 }
 
 .about__circle {
@@ -213,48 +232,129 @@ Favorites
 }
 
 .favorites__form {
-  margin-top: 40px;
-  width: 700px;
-  height: 24px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-top: 36px;
+  width: 700px;
+  height: 24px;
 }
 
-.faforites__form_item label {
-  margin-left: 20px;
+.faforites__form_item {
+  margin-top: 2px;
+  margin-left: -5px;
+  padding-left: 5px;
+  height: 33px;
+}
+
+.favorites__input {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+  accent-color: var(--black);
+}
+
+.favorites__input:checked+label {
+  font-weight: 700;
+}
+
+.favorites__label {
+  display: inline-block;
+  margin-top: 0px;
+  margin-left: -35px;
+  padding: 5px 5px 5px 50px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .favorites__books {
-  margin-top: 40px;
+  margin-top: 44px;
   height: 1150px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  background-color: #999;
 }
 
 .favorites__book {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-end;
   width: 590px;
   height: 555px;
-  background-color: #fff;
 }
 
 .favorites__book_txt {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px 0 15px 20px;
   width: 550px;
   height: 555px;
   border: 1px solid var(--black);
 }
 
+.favorites__staff {
+  font-family: 'Forum', serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 40px;
+  letter-spacing: 2px;
+
+}
+
+.favorites__staff__line {
+  width: 60px;
+  height: 1px;
+  background-color: var(--bg-gold);
+}
+
+.favorites__book-title {
+  margin-top: 20px;
+  width: 200px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 40px;
+  letter-spacing: 2px;
+}
+
+.favorites__book-title>div:first-child {
+  text-transform: uppercase;
+}
+
+.favorites__book-description {
+  margin-top: 20px;
+  width: 355px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+}
+
+.favorites__book-btn {
+  width: 75px;
+  height: 30px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: auto;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
 .favorites__book_img {
-  display: inline-block;
-  margin-left: -170px;
+  margin-left: -160px;
   width: 200px;
   height: 300px;
-  text-align: right;
 }
+
 
 /*********************
 Footer
