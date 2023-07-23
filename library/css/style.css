@@ -278,6 +278,22 @@ Favorites
   justify-content: space-between;
 }
 
+.favorites__books-winter{
+  display: flex;
+}
+
+.favorites__books-spring{
+  display: none;
+}
+
+.favorites__books-summer{
+  display: none;
+}
+
+.favorites__books-autumn{
+  display: none;
+}
+
 .favorites__book {
   display: flex;
   flex-direction: row;
@@ -314,7 +330,7 @@ Favorites
 
 .favorites__book-title {
   margin-top: 20px;
-  width: 200px;
+  width: 550px;
   font-family: 'Inter', Verdana, sans-serif;
   font-weight: 700;
   font-size: 15px;
