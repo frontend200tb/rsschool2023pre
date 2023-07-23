@@ -394,15 +394,13 @@ Coffee shop
   justify-content: space-between;
   margin-top: 40px;
   height: 520px;
-  background-color: #999;
 }
 
 .coffee__menu-coffee-tea {
   display: flex;
   flex-direction: column;
   row-gap: 40px;
-  width: 482px;
-  background-color: #eee;
+  width: 438px;
 }
 
 .coffee-tea__title {
@@ -459,7 +457,6 @@ Coffee shop
   flex-direction: column;
   row-gap: 40px;
   width: 482px;
-  background-color: #eee;
 }
 
 .desserts-cakes__title {
@@ -485,6 +482,7 @@ Coffee shop
   font-size: 20px;
   line-height: 40px;
   letter-spacing: 2px;
+  width: 231px;
   text-align: right;
 }
 
@@ -492,7 +490,7 @@ Coffee shop
   display: flex;
   font-display: row;
   justify-content: space-between;
-  width: 181px;
+  width: 191px;
 }
 
 .desserts-cakes__line {
@@ -511,6 +509,67 @@ Coffee shop
   text-align: left;
 }
 
+
+/*********************
+Our Contacts
+*********************/
+.contacts {
+  padding: 20px;
+  height: 575px;
+  background-color: var(--white);
+}
+
+.contacts__info {
+  display: flex;
+  font-display: row;
+  justify-content: space-between;
+  margin-top: 40px;
+  height: 414px;
+}
+
+.contacts-for {
+  margin-bottom: 40px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 40px;
+  letter-spacing: 2px;
+}
+
+.contacts-phone {
+  margin-top: 20px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 40px;
+  letter-spacing: 2px;
+}
+
+.contacts-senior {
+  margin-top: 40px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 40px;
+  letter-spacing: 2px;
+}
+
+.contacts-director {
+  margin-top: 20px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 40px;
+  letter-spacing: 2px;
+}
+
+.contacts-amanda {
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 40px;
+  letter-spacing: 2px;
+}
 
 /*********************
 Footer
