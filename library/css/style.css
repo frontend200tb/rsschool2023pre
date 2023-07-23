@@ -373,6 +373,146 @@ Favorites
 
 
 /*********************
+Coffee shop
+*********************/
+.coffee-shop {
+  padding: 20px;
+  height: 841px;
+  background-color: var(--white);
+}
+
+.coffee__text {
+  margin-top: 40px;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.coffee__menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40px;
+  height: 520px;
+  background-color: #999;
+}
+
+.coffee__menu-coffee-tea {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  width: 482px;
+  background-color: #eee;
+}
+
+.coffee-tea__title {
+  height: 40px;
+  font-family: 'Forum', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-align: left;
+  color: var(--bg-gold);
+}
+
+.coffee-tea__string {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.coffee-tea__item {
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-align: left;
+}
+
+.coffee-tea__line-price {
+  display: flex;
+  font-display: row;
+  justify-content: space-between;
+  width: 181px;
+}
+
+.coffee-tea__line {
+  margin-top: 20px;
+  width: 100px;
+  height: 1px;
+  border-top: 1px solid var(--bg-gold);
+}
+
+.coffee-tea__price {
+  font-family: 'Forum', serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-align: left;
+}
+
+.coffee__menu-desserts-cakes {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  width: 482px;
+  background-color: #eee;
+}
+
+.desserts-cakes__title {
+  height: 40px;
+  font-family: 'Forum', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-align: right;
+  color: var(--bg-gold);
+}
+
+.desserts-cakes__string {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.desserts-cakes__item {
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-align: right;
+}
+
+.desserts-cakes__line-price {
+  display: flex;
+  font-display: row;
+  justify-content: space-between;
+  width: 181px;
+}
+
+.desserts-cakes__line {
+  margin-top: 20px;
+  width: 100px;
+  height: 1px;
+  border-top: 1px solid var(--bg-gold);
+}
+
+.desserts-cakes__price {
+  font-family: 'Forum', serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 40px;
+  letter-spacing: 2px;
+  text-align: left;
+}
+
+
+/*********************
 Footer
 *********************/
 .footer__content {
