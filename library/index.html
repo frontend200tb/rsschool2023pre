@@ -95,23 +95,31 @@
 				<div class="favorites__form">
 
 					<div class="faforites__form_item">
-					  <input id="winter" class="favorites__input" type="radio" name="seasons" checked>
-					  <label for="winter" class="favorites__label">Winter</label>
+						<label class="favorites__label">
+					    <input id="winter" class="favorites__input" type="radio" name="seasons" checked>
+					    <span class="favorites__span">Winter</span>
+						</label>
 					</div>
 
 					<div class="faforites__form_item">
-					  <input id="spring" class="favorites__input" type="radio" name="seasons">
-					  <label for="spring" class="favorites__label">Spring</label>
+						<label class="favorites__label">
+							<input id="spring" class="favorites__input" type="radio" name="seasons">
+					    <span class="favorites__span">Spring</span>
+						</label>
 					</div>
 
 					<div class="faforites__form_item">
-					  <input id="summer" class="favorites__input" type="radio" name="seasons">
-					  <label for="summer" class="favorites__label">Summer</label>
+						<label class="favorites__label">
+							<input id="summer" class="favorites__input" type="radio" name="seasons">
+							<span class="favorites__span">Summer</span>
+						</label>
 					</div>
 
 					<div class="faforites__form_item">
-					  <input id="autumn" class="favorites__input" type="radio" name="seasons">
-					  <label for="autumn" class="favorites__label">Autumn</label>
+						<label class="favorites__label">
+							<input id="autumn" class="favorites__input" type="radio" name="seasons">
+							<span class="favorites__span">Autumn</span>
+						</label>
 					</div>
 
 				</div>
@@ -195,7 +203,7 @@
 							</div>
 							
 							<div>
-								<button class="favorites__book-btn">Own</button>
+								<button class="favorites__book-btn own" disabled>Own</button>
 							</div>
 						</div>
 						<div class="favorites__book_img">
@@ -284,7 +292,7 @@
 							</div>
 							
 							<div>
-								<button class="favorites__book-btn">Own</button>
+								<button class="favorites__book-btn own">Own</button>
 							</div>
 						</div>
 						<div class="favorites__book_img">
@@ -587,11 +595,11 @@
 				<div class="contacts__info">
 					<div>
 						<div class="contacts-for">For all Library inquiries:</div>
-						<div class="contacts-phone">Please call (617) 730-2370</div>
-						<div class="contacts-phone">For TTY service, please call (617) 730-2370</div>
-						<div class="contacts-phone">Putterham Library: (617) 730-2385</div>
+						<div class="contacts-phone">Please call <a href="tel: +16177302370">(617) 730-2370</a></div>
+						<div class="contacts-phone">For TTY service, please call <a href="tel: +16177302370">(617) 730-2370</a></div>
+						<div class="contacts-phone">Putterham Library: <a href="tel: +16177302385">(617) 730-2385</a></div>
 						<div class="contacts-senior">Senior Staff</div>
-						<div class="contacts-director">Library Director: 	<span class="contacts-amanda">Amanda Hirst</span></div>
+						<div class="contacts-director">Library Director: 	<a href="mailto: AmandaHirst@gmail.com" class="contacts-amanda">Amanda Hirst</a></div>
 					</div>
 
 					<div class="contacts__info-map">
@@ -641,27 +649,32 @@
 
 	<footer class="footer">
 		<div class="container footer__content">
+
 			<div class="footer__info">
 				<div class="footer__adress">286 Cadman Plaza, New York,
 					<br>NY 11238, United States</div>
 				<div class="footer__mon">Mon - Fri
 					<br>08:00 am - 07:00 pm</div>
 			</div>
+
 			<div class="footer__info">
-				<div class="footer__social">
-					<div class="footer__twitter"></div>
-					<div class="footer__instagram"></div>
-					<div class="footer__facebook"></div>
-				</div>
+				<ul class="footer__social">
+					<li class="footer__twitter"></li>
+					<li class="footer__instagram"></li>
+					<li class="footer__facebook"></li>
+				</ul>
 				<div class="footer__mon">Sat - Sun
 					<br>10:00 am - 06:00 pm</div>
 			</div>
+
 			<div class="footer__line"></div>
+
 			<div class="footer__rss">
-				<div>2023</div>
-				<div>The Rolling Scopes School</div>
-				<div>Username</div>
+				<div class="footer__year">2023</div>
+				<div><a href="https://rs.school/js-stage0/" target="_blank">The Rolling Scopes School</a></div>
+				<div class="footer__github"><a href="https://github.com/frontend200tb" target="_blank">frontend200tb</a></div>
 			</div>
+
 		</div>
 	</footer>
 </div>
