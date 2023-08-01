@@ -816,7 +816,9 @@ Footer
 .footer__social {
   display: flex;
   flex-direction: row;
+  align-items: flex-end;
   column-gap: 15px;
+  height: 34px;
   list-style-type: none;
 }
 
