@@ -208,9 +208,11 @@ About
   height: 16px;
   border-radius: 50%;
   background-color: var(--dark);
+  transition: all 0.7s ease;
 }
 
-.about__circle.active {
+.about__circle.active,
+.about__circle:hover {
   background-color: var(--gold);
 }
 
@@ -650,7 +652,8 @@ Library Cards
   padding: 18px;
   width: 600px;
   height: 387px;
-  border: 3px solid var(--dark)
+  border: 3px solid var(--gold);
+  box-shadow: 1px 1px 2px var(--gold);
 }
 
 .library__goldcard {
