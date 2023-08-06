@@ -275,31 +275,85 @@ About
   margin-top: 20px;
 }
 
+@media (max-width: 1439px) {
+  .about__slider {
+    justify-content: space-around;
+  }
+}
+
 .about__img {
+  display: block;
   width: 450px;
   height: 560px;
 }
 
-.about__pagination {
-  margin: 35px auto 0;
-  width: 78px;
-  height: 26px;
+.about__img:nth-child(4),
+.about__img:nth-child(5) {
+  display: none;
+}
+
+@media (max-width: 1439px) {
+  .about__img:nth-child(3) {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  .about__img:nth-child(2) {
+    display: none;
+  }
+}
+
+.about__carousel {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 35px auto 0;
+  width: 78px;
+  height: 26px;
 }
 
-.about__btn {
+@media (max-width: 1439px) {
+  .about__carousel {
+    width: 104px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .about__carousel {
+    width: 130px;
+    margin: 20px auto 0;
+  }
+}
+
+.carousel__btn {
   padding: 5px;
   width: 26px;
   height: 26px;
 }
 
-.about__btn:hover {
+.carousel__btn:hover {
   cursor: pointer;
 }
 
-.about__circle {
+.carousel__btn:nth-child(4),
+.carousel__btn:nth-child(5) {
+  display: none;
+}
+
+@media (max-width: 1439px) {
+  .carousel__btn:nth-child(4) {
+    display: block;
+  }
+}
+
+@media (max-width: 1024px) {
+  .carousel__btn:nth-child(5) {
+    display: block;
+  }
+}
+
+.carousel__circle {
   width: 16px;
   height: 16px;
   border-radius: 50%;
@@ -307,8 +361,8 @@ About
   transition: all 0.7s ease;
 }
 
-.about__circle.active,
-.about__circle:hover {
+.carousel__circle.active,
+.carousel__circle:hover {
   background-color: var(--gold);
 }
 
