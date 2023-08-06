@@ -21,10 +21,13 @@ html {
 }
 
 .page {
+  width: 100%;
   font-family: 'Inter', Verdana, sans-serif;
   font-weight: 400;
   font-size: 20px;
   color: var(--black);
+  overflow: hidden;
+  position: relative;
   background-color: var(--gray);
 }
 
@@ -89,7 +92,7 @@ header__nav
   height: 50px;
 }
 
-.nav {
+.nav-list {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -112,18 +115,24 @@ header__nav
   border-bottom: 2px solid var(--white);
 }
 
-@media (width < 1024px) {
+@media (max-width: 1024px) {
   .header__nav {
     position: absolute;
-    right: -332px;
     top: 90px;
+    right: -332px;
     width: 332px;
     height: 480px;
     background: #0c0c0e;
     transition: transform 0.5s;
   }
 
-  .nav {
+  .header__nav.active {
+    transform: translateX(-100%);
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .nav-list {
     flex-direction: column;
     flex-wrap: wrap;
     align-content: center;

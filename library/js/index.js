@@ -1,8 +1,10 @@
 const burger = document.getElementsByClassName('js-burger')[0];
-function burgerActive() {
+const nav = document.getElementsByClassName('js-nav')[0];
+function toggleActive() {
   burger.classList.toggle('active');
+  nav.classList.toggle('active');
 }
-burger.addEventListener('click', burgerActive);
+burger.addEventListener('click', toggleActive);
 
 console.log(`
 Ваша оценка - 100 баллов 
