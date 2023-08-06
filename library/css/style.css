@@ -173,7 +173,7 @@ header__icons
     display: block;
     margin: auto 0 auto 40px;
     width: 45px;
-    height: 20px;
+    height: 24px;
     cursor: pointer;
   }
 }
@@ -181,7 +181,6 @@ header__icons
 .burger-line1,
 .burger-line2,
 .burger-line3 {
-  display: block;
   width: 45px;
   height: 2px;
   background-color: var(--white);
@@ -217,6 +216,9 @@ Welcome
 .welcome {
   height: 600px;
   background-image: url('../assets/img/welcome.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .welcome__overlay {
