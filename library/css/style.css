@@ -34,7 +34,7 @@ Container
 *********************/
 .container {
   margin: 0 auto;
-  width: 1440px;
+  max-width: 1440px;
 }
 
 .section-title {
@@ -114,6 +114,50 @@ Header
   background-repeat: no-repeat;  
   transition: all 0.5s;
   cursor: pointer;
+}
+
+.header__burger-btn {
+  display: none;
+  width: 45px;
+  height: 20px;
+  cursor: pointer;
+  background-color: var(--dark);
+}
+
+@media (width < 1024px) {
+  .header__burger-btn {
+    display: block;
+  }  
+}
+
+.header__burger-line {
+  display: block;
+  width: 45px;
+  height: 2px;
+  background-color: var(--white);
+  transition: 0.5s;
+}
+
+.header__burger-line::before {
+  content: '';
+  transform: translateY(-10px);
+}
+
+.header__burger-line::after {
+  content: '';
+  transform: translateY(10px);
+}
+
+.header__burger-btn.active .header__burger-line {
+  transform: scale(0);
+}
+
+.header__burger-btn.active .header__burger-line::before {
+  transform: translateY(0) rotate(45deg);
+}
+
+.header__burger-btn.active .header__burger-line::after {
+  transform: translateY(0) rotate(-45deg);
 }
 
 

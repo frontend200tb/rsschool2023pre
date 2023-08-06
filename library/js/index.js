@@ -1,3 +1,9 @@
+const burger = document.getElementsByClassName('js-burger')[0];
+function burgerActive() {
+  burger.classList.toggle('active');
+}
+burger.addEventListener('click', burgerActive);
+
 console.log(`
 Ваша оценка - 100 баллов 
 Отзыв по пунктам ТЗ:
