@@ -256,7 +256,6 @@ About
 *********************/
 .about {
   padding: 20px;
-  height: 837px;
   background-color: var(--white);
 }
 
@@ -276,6 +275,10 @@ About
 }
 
 @media (max-width: 1439px) {
+  .about {
+    padding-bottom: 35px;
+  }
+
   .about__slider {
     justify-content: space-around;
   }
@@ -372,8 +375,13 @@ Favorites
 *********************/
 .favorites {
   padding: 20px;
-  height: 1439px;
   background-color: var(--white);
+}
+
+@media (max-width: 1439px) {
+  .favorites {
+    padding-bottom: 40px;
+  }
 }
 
 .favorites__text {
@@ -436,7 +444,12 @@ Favorites
   justify-content: space-between;
   row-gap: 40px;
   margin-top: 35px;
-  height: 1150px;
+}
+
+@media (max-width: 1439px) {
+  .favorites__books {
+    justify-content: space-around;
+  }
 }
 
 .favorites__books-winter{
