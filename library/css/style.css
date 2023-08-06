@@ -55,10 +55,11 @@ Container
   border-top: 1px solid var(--dark);
 }
 
+
 /*********************
 Header
 *********************/
-.header__content {
+.header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -67,6 +68,9 @@ Header
   background-color: var(--dark);
 }
 
+/*
+header__logo
+*/
 .header__logo {
   height: 50px;
   font-family: 'Forum', serif;
@@ -77,6 +81,9 @@ Header
   color: var(--white);
 }
 
+/*
+header__nav
+*/
 .header__nav {
   margin: 0 0 0 auto;
   height: 50px;
@@ -105,6 +112,38 @@ Header
   border-bottom: 2px solid var(--white);
 }
 
+@media (width < 1024px) {
+  .header__nav {
+    position: absolute;
+    right: -332px;
+    top: 90px;
+    width: 332px;
+    height: 480px;
+    background: #0c0c0e;
+    transition: transform 0.5s;
+  }
+
+  .nav {
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    text-align: center;
+    padding-top: 10px;
+  }
+
+  .nav-item {
+    width: 100%
+  }
+}
+
+/*
+header__icons
+*/
+.header__icons {
+  display: flex;
+  flex-direction: row;
+}
+
 .header__icon-profile {
   margin: auto 0 auto 40px;
   width: 28px;
@@ -116,21 +155,23 @@ Header
   cursor: pointer;
 }
 
-.header__burger-btn {
+.header__icon-burger {
   display: none;
-  width: 45px;
-  height: 20px;
-  cursor: pointer;
-  background-color: var(--dark);
 }
 
 @media (width < 1024px) {
-  .header__burger-btn {
+  .header__icon-burger {
     display: block;
-  }  
+    margin: auto 0 auto 40px;
+    width: 45px;
+    height: 20px;
+    cursor: pointer;
+  }
 }
 
-.header__burger-line {
+.burger-line1,
+.burger-line2,
+.burger-line3 {
   display: block;
   width: 45px;
   height: 2px;
@@ -138,26 +179,26 @@ Header
   transition: 0.5s;
 }
 
-.header__burger-line::before {
-  content: '';
-  transform: translateY(-10px);
+.burger-line2 {
+  transform: translateY(8px);
 }
 
-.header__burger-line::after {
-  content: '';
-  transform: translateY(10px);
+.burger-line3 {
+  transform: translateY(16px);
 }
 
-.header__burger-btn.active .header__burger-line {
+.header__icon-burger.active .burger-line2 {
   transform: scale(0);
 }
 
-.header__burger-btn.active .header__burger-line::before {
-  transform: translateY(0) rotate(45deg);
+.header__icon-burger.active .burger-line1 {
+  transform-origin: center;
+  transform: translateY(10px) rotate(45deg);
 }
 
-.header__burger-btn.active .header__burger-line::after {
-  transform: translateY(0) rotate(-45deg);
+.header__icon-burger.active .burger-line3 {
+  transform-origin: center;
+  transform: translateY(6px) rotate(-45deg);
 }
 
 
