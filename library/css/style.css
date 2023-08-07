@@ -574,8 +574,13 @@ Coffee shop
 *********************/
 .coffee-shop {
   padding: 20px;
-  height: 841px;
   background-color: var(--white);
+}
+
+@media (max-width: 1439px) {
+  .coffee-shop {
+    padding-bottom: 40px;
+  }
 }
 
 .coffee__txt {
@@ -589,8 +594,9 @@ Coffee shop
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 40px;
   margin-top: 40px;
-  height: 520px;
 }
 
 .coffee__menu-coffee-tea {
@@ -654,6 +660,7 @@ Coffee shop
   display: flex;
   flex-direction: column;
   row-gap: 40px;
+  margin-left: auto;
   width: 480px;
 }
 
