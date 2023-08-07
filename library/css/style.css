@@ -585,6 +585,7 @@ Coffee shop
 
 .coffee__txt {
   margin-top: 40px;
+  margin-right: -1px;
   line-height: 40px;
   letter-spacing: 2px;
   text-align: center;
@@ -721,16 +722,16 @@ Our Contacts
 *********************/
 .contacts {
   padding: 20px;
-  height: 575px;
   background-color: var(--white);
 }
 
 .contacts__info {
   display: flex;
-  font-display: row;
+  flex-direction: row;
   justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 100px;
   margin-top: 40px;
-  height: 414px;
 }
 
 .contacts-for {
@@ -784,6 +785,12 @@ Our Contacts
   letter-spacing: 2px;
   color: #000;
   text-decoration: none;
+}
+
+.contacts__info-map {
+  margin: 0 auto;
+  width: 696px;
+  height: 414px;
 }
 
 
