@@ -808,6 +808,12 @@ Library Cards
   background-color: var(--white);
 }
 
+@media (max-width: 1024px) {
+  .library-card {
+    padding-bottom: 40px;
+  }
+}
+
 .library__content {
   display: flex;
   flex-direction: row;
@@ -918,7 +924,6 @@ Library Cards
 
 .library__get {
   width: 470px;
-  height: 253px;
   text-align: right;
 }
 
@@ -944,7 +949,6 @@ Library Cards
   font-size: 20px;
   line-height: 40px;
   letter-spacing: 0.4px;
-  background-color: #994;
 }
 
 @media (max-width: 1024px) {
@@ -955,7 +959,6 @@ Library Cards
 
 .library__get-btns {
   margin-top: 35px;
-  background-color: #747;
 }
 
 @media (max-width: 1024px) {
@@ -1085,11 +1088,13 @@ Footer
 }
 
 .footer__year {
-  width: 200px;
+  width: 180px;
   text-align: left;
+  background-color: #773;
 }
 
 .footer__github {
-  width: 200px;
+  width: 180px;
   text-align: right;
+  background-color: #773;
 }
