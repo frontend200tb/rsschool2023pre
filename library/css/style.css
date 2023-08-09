@@ -1090,11 +1090,9 @@ Footer
 .footer__year {
   width: 180px;
   text-align: left;
-  background-color: #773;
 }
 
 .footer__github {
   width: 180px;
   text-align: right;
-  background-color: #773;
 }
