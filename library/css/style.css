@@ -256,6 +256,7 @@ About
 *********************/
 .about {
   padding: 20px;
+  padding-bottom: 35px;
   background-color: var(--white);
 }
 
@@ -275,10 +276,6 @@ About
 }
 
 @media (max-width: 1439px) {
-  .about {
-    padding-bottom: 35px;
-  }
-
   .about__slider {
     justify-content: space-around;
   }
@@ -375,13 +372,8 @@ Favorites
 *********************/
 .favorites {
   padding: 20px;
+  padding-bottom: 40px;
   background-color: var(--white);
-}
-
-@media (max-width: 1439px) {
-  .favorites {
-    padding-bottom: 40px;
-  }
 }
 
 .favorites__text {
@@ -574,13 +566,8 @@ Coffee shop
 *********************/
 .coffee-shop {
   padding: 20px;
+  padding-bottom: 40px;
   background-color: var(--white);
-}
-
-@media (max-width: 1439px) {
-  .coffee-shop {
-    padding-bottom: 40px;
-  }
 }
 
 .coffee__txt {
@@ -722,13 +709,8 @@ Our Contacts
 *********************/
 .contacts {
   padding: 20px;
+  padding-bottom: 40px;
   background-color: var(--white);
-}
-
-@media (max-width: 1439px) {
-  .contacts {
-    padding-bottom: 40px;
-  }
 }
 
 .contacts__info {
@@ -794,9 +776,14 @@ Our Contacts
 }
 
 .contacts__info-map {
-  margin: 0 auto;
   width: 696px;
   height: 414px;
+}
+
+@media (max-width: 1024px) {
+  .contacts__info-map {
+    margin: 0 auto;
+  }
 }
 
 
@@ -805,13 +792,8 @@ Library Cards
 *********************/
 .library-card {
   padding: 20px;
+  padding-bottom: 40px;
   background-color: var(--white);
-}
-
-@media (max-width: 1024px) {
-  .library-card {
-    padding-bottom: 40px;
-  }
 }
 
 .library__content {
