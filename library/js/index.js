@@ -1,10 +1,25 @@
+const page = document.getElementsByClassName('js-page')[0];
 const burger = document.getElementsByClassName('js-burger')[0];
 const nav = document.getElementsByClassName('js-nav')[0];
-function toggleActive() {
+const navItem = document.getElementsByClassName('js-nav-item');
+
+function toggleNav() {
   burger.classList.toggle('active');
   nav.classList.toggle('active');
 }
-burger.addEventListener('click', toggleActive);
+function removeNav() {
+  burger.classList.remove('active');
+  nav.classList.remove('active');
+}
+
+burger.addEventListener('click', toggleNav);
+const navItems = Array.from(navItem);
+console.log('navItem', navItem);
+console.log('navItems', navItems);
+navItems.forEach( (elem) => {
+  elem.addEventListener('click', removeNav);
+});
+//page.addEventListener('click', event => removeNav(event));
 
 console.log(`
 Ваша оценка - 100 баллов 
