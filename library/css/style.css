@@ -31,6 +31,9 @@ html {
   background-color: var(--gray);
 }
 
+.none {
+  display: none;
+}
 
 /*********************
 Container
@@ -124,6 +127,7 @@ header__nav
     height: 480px;
     background: #0c0c0e;
     transition: transform 0.5s;
+    z-index: 20;
   }
 
   .header__nav.active {
@@ -175,6 +179,7 @@ header__icons
     width: 45px;
     height: 24px;
     cursor: pointer;
+    z-index: 20;
   }
 }
 
@@ -209,6 +214,14 @@ header__icons
   transform: translateY(6px) rotate(-45deg);
 }
 
+.burger-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}
 
 /*********************
 Welcome
