@@ -281,11 +281,43 @@ About
   text-align: center;
 }
 
+.about__frame {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 58px;
+  margin-top: 20px;
+}
+
+.carret {
+  display: none;
+}
+
+
+@media (max-width: 1024px) {
+  .carret {
+    display: block;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+}
+
+.about__images {
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .about__images {
+    width: 450px;
+  }
+}
+
 .about__slider {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 20px;
 }
 
 @media (max-width: 1439px) {
