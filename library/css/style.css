@@ -439,7 +439,7 @@ Favorites
   width: 710px;
 }
 
-@media (max-width: 770px) {
+@media (max-width: 760px) {
   .favorites__form {
     width: 100%;
   }
@@ -826,13 +826,19 @@ Our Contacts
 }
 
 .contacts__info-map {
+  display: block;
   width: 696px;
-  height: 414px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1257px) {
   .contacts__info-map {
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 760px) {
+  .contacts__info-map {
+    width: 100%;
   }
 }
 
@@ -1122,6 +1128,12 @@ Footer
 .footer__year {
   width: 180px;
   text-align: left;
+}
+
+@media (max-width: 800px) {
+  .footer__year {
+    width: 125px;
+  }
 }
 
 .footer__github {
