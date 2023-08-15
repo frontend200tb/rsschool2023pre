@@ -400,15 +400,20 @@ Favorites
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  column-gap: 80px;
+  justify-content: space-between;
   margin-top: 35px;
   margin-left: -5px;
-  width: 710px;
   height: 34px;
+  width: 710px;
+}
+
+@media (max-width: 770px) {
+  .favorites__form {
+    width: 100%;
+  }
 }
 
 .faforites__form_item {
-  width: 150px;
   height: 34px;
 }
 
