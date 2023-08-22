@@ -1,7 +1,7 @@
 console.log('frontend200tb', 'library start');
 
 /*********************
-Burger menu
+HEADER Burger menu
 *********************/
 const burger = document.getElementsByClassName('js-burger')[0];
 const nav = document.getElementsByClassName('js-nav')[0];
@@ -26,12 +26,12 @@ navItems.forEach( (elem) => {
 });
 overlay.addEventListener('click', removeNav);
 /*********************
-/Burger menu
+/HEADER Burger menu
 *********************/
 
 
 /*********************
-Carousel
+ABOUT Carousel
 *********************/
 const slider = document.querySelector('.js-slider');
 const carretLeft = document.getElementsByClassName('js-carret')[0];
@@ -116,8 +116,29 @@ function widthChange() {
     return;
   }
 }
-  
 /*********************
-/Carousel
+/ABOUT Carousel
 *********************/
 
+
+/*********************
+FAVORITES Seasons
+*********************/
+const radio = document.getElementsByClassName('js-radio');
+const season = document.getElementsByClassName('js-season');
+
+let currentSeason = season[0];
+
+for (let i = 0; i < radio.length; i++) {
+  radio[i].addEventListener('change', () => radioCheck(i))
+}
+function radioCheck(i) {
+  //currentSeason.style.transition = 'opacity 1s';
+  //currentSeason.style.opacity = '0';
+  currentSeason.style.display = 'none';
+  season[i].style.display = 'flex';
+  currentSeason = season[i];
+}
+/*********************
+/FAVORITES Seasons
+*********************/
