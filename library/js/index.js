@@ -34,29 +34,36 @@ overlay.addEventListener('click', removeNav);
 Carousel
 *********************/
 const slider = document.querySelector('.js-slider');
-const circle = Array.from(document.querySelectorAll('.js-circle'));
 const carretLeft = document.getElementsByClassName('js-carret')[0];
 const carretRight = document.getElementsByClassName('js-carret')[1];
+const circleBtn = Array.from(document.querySelectorAll('.js-btn'));
 
-let currentImg = 0;
 const maxImg = 4;
-let leftPosition = 0;
 const widthImg = 475;
+let currentImg = 0;
+let leftPosition = 0;
+let currentBtn = circleBtn[0];
 
 carretLeft.classList.add('carret-disable');
-circle[0].classList.add('circle-active');
+currentBtn.classList.add('btn-active');
 
 carretLeft.addEventListener('click', leftClick);
 carretRight.addEventListener('click', rightClick);
+for (let i = 0; i < circleBtn.length; i++) {
+  circleBtn[i].addEventListener('click', () => circleBtnClick(i));
+};
+
+window.addEventListener('resize', widthChange);
 
 function leftClick() {
   if (carretLeft.classList.contains('carret-disable')) {
     return
   }
   carretRight.classList.remove('carret-disable');
-  circle[currentImg].classList.remove('circle-active');
+  circleBtn[currentImg].classList.remove('btn-active');
   currentImg--;
-  circle[currentImg].classList.add('circle-active');
+  currentBtn = circleBtn[currentImg];
+  currentBtn.classList.add('btn-active');
   leftPosition += widthImg; 
   slider.style.left = `${leftPosition}px`;
   if (currentImg === 0) {
@@ -69,16 +76,47 @@ function rightClick() {
     return
   }
   carretLeft.classList.remove('carret-disable');
-  circle[currentImg].classList.remove('circle-active');
+  circleBtn[currentImg].classList.remove('btn-active');
   currentImg++;
-  circle[currentImg].classList.add('circle-active');
+  currentBtn = circleBtn[currentImg];
+  currentBtn.classList.add('btn-active');
   leftPosition -= widthImg; 
   slider.style.left = `${leftPosition}px`;
-  if (currentImg === 4) {
+  if (currentImg === maxImg) {
     carretRight.classList.add('carret-disable');
   }
 }
 
+function circleBtnClick(i) {
+  if ( !(getComputedStyle(circleBtn[4]).display === 'none') || (circleBtn[i] === currentBtn) ) {
+    return
+  }
+  currentBtn.classList.remove('btn-active');
+  currentBtn = circleBtn[i];
+  currentBtn.classList.add('btn-active');
+  leftPosition -= widthImg * ( i - currentImg );
+  currentImg = i;
+  slider.style.left = `${leftPosition}px`;
+  if (currentImg === 0) {
+    carretLeft.classList.add('carret-disable');
+  } else {
+    carretLeft.classList.remove('carret-disable');
+  }
+}
+
+function widthChange() {
+  console.log(currentImg);
+  if ( (getComputedStyle(circleBtn[3]).display === 'none') && (currentImg === 3) ) {
+    carretLeft.classList.remove('carret-disable');
+    leftClick();
+    return;
+  }
+  if ( (getComputedStyle(circleBtn[4]).display === 'none') && (currentImg === 4) ) {
+    leftClick();
+    return;
+  }
+}
+  
 /*********************
 /Carousel
 *********************/
