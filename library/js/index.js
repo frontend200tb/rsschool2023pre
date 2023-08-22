@@ -34,14 +34,17 @@ overlay.addEventListener('click', removeNav);
 Carousel
 *********************/
 const slider = document.querySelector('.js-slider');
+const circle = Array.from(document.querySelectorAll('.js-circle'));
 const carretLeft = document.getElementsByClassName('js-carret')[0];
 const carretRight = document.getElementsByClassName('js-carret')[1];
 
 let currentImg = 0;
 const maxImg = 4;
 let leftPosition = 0;
+const widthImg = 475;
 
 carretLeft.classList.add('carret-disable');
+circle[0].classList.add('circle-active');
 
 carretLeft.addEventListener('click', leftClick);
 carretRight.addEventListener('click', rightClick);
@@ -51,8 +54,10 @@ function leftClick() {
     return
   }
   carretRight.classList.remove('carret-disable');
+  circle[currentImg].classList.remove('circle-active');
   currentImg--;
-  leftPosition += 475; 
+  circle[currentImg].classList.add('circle-active');
+  leftPosition += widthImg; 
   slider.style.left = `${leftPosition}px`;
   if (currentImg === 0) {
     carretLeft.classList.add('carret-disable');
@@ -64,8 +69,10 @@ function rightClick() {
     return
   }
   carretLeft.classList.remove('carret-disable');
+  circle[currentImg].classList.remove('circle-active');
   currentImg++;
-  leftPosition -= 475; 
+  circle[currentImg].classList.add('circle-active');
+  leftPosition -= widthImg; 
   slider.style.left = `${leftPosition}px`;
   if (currentImg === 4) {
     carretRight.classList.add('carret-disable');

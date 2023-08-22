@@ -401,6 +401,10 @@ About
   .carousel__btn:nth-child(5) {
     display: block;
   }
+
+  .carousel__btn:hover {
+    cursor: auto;
+  }
 }
 
 .carousel__circle {
@@ -411,11 +415,15 @@ About
   transition: all 0.7s ease;
 }
 
-.carousel__circle.active,
-.carousel__circle:hover {
+.circle-active {
   background-color: var(--gold);
 }
 
+@media (min-width: 1024px) {
+  .carousel__circle:hover {
+    background-color: var(--gold);
+  }
+}
 
 /*********************
 Favorites
