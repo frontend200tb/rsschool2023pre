@@ -127,16 +127,21 @@ FAVORITES Seasons
 const radio = document.getElementsByClassName('js-radio');
 const season = document.getElementsByClassName('js-season');
 
+const maxSeason = 3;
+const heightSeason = 1150;
+let topPosition = 0;
 let currentSeason = season[0];
 
 for (let i = 0; i < radio.length; i++) {
   radio[i].addEventListener('change', () => radioCheck(i))
 }
 function radioCheck(i) {
-  //currentSeason.style.transition = 'opacity 1s';
-  //currentSeason.style.opacity = '0';
-  currentSeason.style.display = 'none';
-  season[i].style.display = 'flex';
+  currentSeason.classList.remove('delay');
+  currentSeason.style.opacity = '0';
+  currentSeason.style.zIndex = '0';
+  season[i].classList.add('delay');
+  season[i].style.zIndex = '1';
+  season[i].style.opacity = '1';
   currentSeason = season[i];
 }
 /*********************
