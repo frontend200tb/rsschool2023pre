@@ -1,3 +1,8 @@
+console.log('frontend200tb', 'library start');
+
+/*********************
+HEADER Burger menu
+*********************/
 const burger = document.getElementsByClassName('js-burger')[0];
 const nav = document.getElementsByClassName('js-nav')[0];
 const navItem = document.getElementsByClassName('js-nav-item');
@@ -20,62 +25,125 @@ navItems.forEach( (elem) => {
   elem.addEventListener('click', removeNav);
 });
 overlay.addEventListener('click', removeNav);
+/*********************
+/HEADER Burger menu
+*********************/
 
-console.log(`
-Ваша оценка - 100 баллов 
-Отзыв по пунктам ТЗ:
-Выполненные пункты:
-1) Вёрстка валидная. Для проверки валидности вёрстки используйте сервис https://validator.w3.org/Валидной вёрстке соответствует надпись "Document checking completed. No errors or warnings to show." В таком случае баллы за пункт требований выставляем полностью.Eсли есть предупреждения - warnings, но нет ошибок - errors, выставляем половину баллов за пункт требований. 
 
-2) 'header', 'main', 'footer' 
+/*********************
+ABOUT Carousel
+*********************/
+const slider = document.querySelector('.js-slider');
+const carretLeft = document.getElementsByClassName('js-carret')[0];
+const carretRight = document.getElementsByClassName('js-carret')[1];
+const circleBtn = Array.from(document.querySelectorAll('.js-btn'));
 
-3) Шесть элементов 'section' (по количеству секций) 
+const maxImg = 4;
+const widthImg = 475;
+let currentImg = 0;
+let leftPosition = 0;
+let currentBtn = circleBtn[0];
 
-4) Только один заголовок 'h1'. Если элементов 'h1' на странице больше одного, считаем это ошибкой. 
+carretLeft.classList.add('carret-disable');
+currentBtn.classList.add('btn-active');
 
-5) Пять заголовков 'h2' (легко отличимы на верхних границах секций, имеют единый стиль) 
+carretLeft.addEventListener('click', leftClick);
+carretRight.addEventListener('click', rightClick);
+for (let i = 0; i < circleBtn.length; i++) {
+  circleBtn[i].addEventListener('click', () => circleBtnClick(i));
+};
 
-6) Один элемент 'nav' (панель навигации в хедере) 
+window.addEventListener('resize', widthChange);
 
-7) Два списка ul > li > a (панель навигации, ссылки на соцсети в футере) 
+function leftClick() {
+  if (carretLeft.classList.contains('carret-disable')) {
+    return
+  }
+  carretRight.classList.remove('carret-disable');
+  circleBtn[currentImg].classList.remove('btn-active');
+  currentImg--;
+  currentBtn = circleBtn[currentImg];
+  currentBtn.classList.add('btn-active');
+  leftPosition += widthImg; 
+  slider.style.left = `${leftPosition}px`;
+  if (currentImg === 0) {
+    carretLeft.classList.add('carret-disable');
+  }
+}
 
-8) Семь кнопок 'button' 
+function rightClick() {
+  if (carretRight.classList.contains('carret-disable')) {
+    return
+  }
+  carretLeft.classList.remove('carret-disable');
+  circleBtn[currentImg].classList.remove('btn-active');
+  currentImg++;
+  currentBtn = circleBtn[currentImg];
+  currentBtn.classList.add('btn-active');
+  leftPosition -= widthImg; 
+  slider.style.left = `${leftPosition}px`;
+  if (currentImg === maxImg) {
+    carretRight.classList.add('carret-disable');
+  }
+}
 
-9) Два инпута 'input' 
+function circleBtnClick(i) {
+  if ( !(getComputedStyle(circleBtn[4]).display === 'none') || (circleBtn[i] === currentBtn) ) {
+    return
+  }
+  currentBtn.classList.remove('btn-active');
+  currentBtn = circleBtn[i];
+  currentBtn.classList.add('btn-active');
+  leftPosition -= widthImg * ( i - currentImg );
+  currentImg = i;
+  slider.style.left = `${leftPosition}px`;
+  if (currentImg === 0) {
+    carretLeft.classList.add('carret-disable');
+  } else {
+    carretLeft.classList.remove('carret-disable');
+  }
+}
 
-10) Блок 'header'  Стараемся, чтобы текст совпадал с макетом. Если есть небольшие отклонения, то главное для нас, чтобы расстояние между элементами меню было одинаковое, 30px.  Элементы меню работают как якоря. При нажатии на один из них нас перебросит наверх соответствующего раздела.Сами элементы меню при наведении (эффект hover) должны быть интерактивными (решайте сами, должны ли они стновиться жирными или подчеркнутыми. Но обязательно курсор должен поменяться на cursor: pointer)Расстояние от самого меню до иконки пользователя - 40px. Иконка является отдльным элементом, и не входит в 'nav'. Текст "Brooklyn Public Library" находится в 'h1'. 
+function widthChange() {
+  console.log(currentImg);
+  if ( (getComputedStyle(circleBtn[3]).display === 'none') && (currentImg === 3) ) {
+    carretLeft.classList.remove('carret-disable');
+    leftClick();
+    return;
+  }
+  if ( (getComputedStyle(circleBtn[4]).display === 'none') && (currentImg === 4) ) {
+    leftClick();
+    return;
+  }
+}
+/*********************
+/ABOUT Carousel
+*********************/
 
-11) Секция 'Welcome' 
 
-12) Секция 'About'Добавьте все картинки, которые будут использованы в папку с картинками. Даже если отображается всего 3, в папке должны быть все 5.Расстояния между кнопками пагинации 10px.Обратите внимание, что кнопки хоть и имеют вид круга, но интерактивная область (область нажатия, выделяемая cursor:pointer) должна быть размером +5px в каждую сторону (круглая, квадратная или со скошенными углами - на ваш выбор). Т.е. это будут прозрачные элементы размерами 26x26, внутри которых будут располагаться непосредственно кнопки 16x16. 
+/*********************
+FAVORITES Seasons
+*********************/
+const radio = document.getElementsByClassName('js-radio');
+const season = document.getElementsByClassName('js-season');
 
-13) Секция 'Favorites' Интерактивные кнопки дожны иметь структуру input type="radio" + label.Добавьте небольшую область вокруг кнопки и надписи (например, 5px как в примере секции 'about') для того, чтобы была возможность легче наводить мышку.Картинок и описаний - много, для 4х секций. Их стоит добавить в проект. А лучше сразу на страницу, и скрыть с помощью CSS свойств, например display: none;.Кнопки "buy" должны быть интерактивными, плавно менять свой цвет при наведении на них, как указано в макете styleguides.Кнопка "own" не должна быть интерактивной, не должна нажиматься. И на ней должен присутствовать атрибут disabled. 
+const maxSeason = 3;
+const heightSeason = 1150;
+let topPosition = 0;
+let currentSeason = season[0];
 
-14) Секция 'CoffeShop' 
-
-15) Секция 'Contacts'Карту можно вставить просто картинкой. Добавлять ее отдельным сервисом не обязательно.Везде, где в тексте встречаются цифры в виде телефонного номера, это должны быть ссылки с типом "tel" и номером.Там, где в тексте встречается текст с именем контактного лица, это должна быть ссылка с типом "mailto" и адресом почты (например, AmandaHirst@gmail.com). 
-
-16) Секция 'LibraryCard'"Find your Library card" - это должа быть форма с полями input.Желательно сделать ограничения в полях input на использование только букв и цифр, а также дефиса. Но это правило проверять не нужно.Все 3 кнопки должны быть интерактивными, плавно менять свой цвет при наведении на них, как указано в макете styleguides.Хоть иконки из модального окна (Visits, Bonuses, Books) сейчас не нужны будут, можно их добавить в соответствующую папку проекта. 
-
-17) Блок 'footer' - Адрес библиотеки должен быть ссылкой (место на карте, например).Иконки соцсетей также должны быть ссылками (можете вставить свои соцсети или любые другие аккаунты этих сервисов). Вместо Username должно быть ваше имя, как оно пишется на английском языке и ссылка на GitHub. 
-
-18) Для построения сетки используются флексы или гриды (display: flex... или display: grid...) 
-
-19) При уменьшении масштаба страницы браузера вся вёрстка (контент и фоны) размещается по центру, а не сдвигается в сторону. Фон за рамками страницы может быть черным, белым или любого оттенка серого. 
-
-20) Иконки добавлены в формате .svg. SVG может быть добавлен любым способом. Обращаем внимание на формат, а не на способ добавления 
-
-21) Изображения добавлены в формате .jpg (.jpeg) или .png 
-
-22) Есть favicon 
-
-23) Плавная прокрутка по якорям 
-
-24) В футере название ссылки Username заменено и ведет на GitHub студента 
-
-25) В футере ссылка The Rolling Scopes School ведет на страницу курса https://rs.school/js-stage0/  
-
-26) Интерактивность элементов согласно макету. Интерактивность включает в себя не только изменение внешнего вида курсора, например, при помощи свойства cursor: pointer, но и другие визуальные эффекты, например, изменение цвета фона или цвета шрифта. Если в макете указаны стили при наведении и клике, для элемента указываем эти стили. Если в макете стили не указаны, реализуете их по своему усмотрению, руководствуясь общим стилем макета 
-
-27) Обязательное требование к интерактивности: плавное изменение внешнего вида элемента при наведении и клике не влияет на соседние элементы 
-`);
+for (let i = 0; i < radio.length; i++) {
+  radio[i].addEventListener('change', () => radioCheck(i))
+}
+function radioCheck(i) {
+  currentSeason.classList.remove('delay');
+  currentSeason.style.opacity = '0';
+  currentSeason.style.zIndex = '0';
+  season[i].classList.add('delay');
+  season[i].style.zIndex = '1';
+  season[i].style.opacity = '1';
+  currentSeason = season[i];
+}
+/*********************
+/FAVORITES Seasons
+*********************/
