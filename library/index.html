@@ -43,32 +43,47 @@
 			</nav>
 
 			<div class="header__icons">
-				<div class="header__icon-profile"></div>
+				<div class="header__icon-profile">
+					<div class="profile-icon js-profile-icon"></div>
+
+					<div class="dropmenu__profile js-profile none">
+						<div class="profile__title">Profile</div>
+						<div class="profile__hr"></div>
+						<div class="profile__txtblock">
+							<div class="login__btn">Log In</div>
+							<div class="register__btn">Register</div>
+							<div class="myprofile__btn none">My profile</div>
+							<div class="logout__btn none">Log Out</div>
+						</div>
+					</div>
+				</div>
+
 				<div class="header__icon-burger js-burger">
 					<div class="burger-line1"></div>
 					<div class="burger-line2"></div>
 					<div class="burger-line3"></div>
 				</div>
-				<div class="burger-overlay js-burger-overlay none"></div>
+				
 			</div>
 
 		</div>
+			
+		<section class="container welcome">
+			<div class="welcome__overlay"></div>		
+			<div class="welcome__bg">
+				<h2 class="welcome__txt">
+					<span>welcome</span>
+					<span>&nbsp;to the Brooklyn</span>
+					<span>&nbsp;library</span>
+				</h2>
+			</div>
+		</section>
 	</header>
 
 
 	<main class="main">
 		<div class="container main__content">
 
-			<section class="welcome">
-				<div class="welcome__overlay"></div>		
-				<div class="welcome__bg">
-					<h2 class="welcome__txt">
-					  <span>welcome</span>
-					  <span>&nbsp;to the Brooklyn</span>
-					  <span>&nbsp;library</span>
-				  </h2>
-				</div>
-			</section>
 
 			<section id="about" class="about">
 				<h2 class="section-title">About</h2>
@@ -118,36 +133,37 @@
 				<div class="section-title-line"></div>
         <div class="favorites__text">Pick favorites of season</div>
 
-				<div class="favorites__form">
+				<div class="favorites__sticky">
+					<div class="favorites__form">
 
-					<div class="faforites__form_item">
-						<label class="favorites__label">
-				      <input id="winter" class="favorites__input js-radio" type="radio" name="seasons" checked>
-					    <span class="favorites__span">Winter</span>
-						</label>
+						<div class="faforites__form_item">
+							<label class="favorites__label">
+								<input id="winter" class="favorites__input js-radio" type="radio" name="seasons" checked>
+								<span class="favorites__span">Winter</span>
+							</label>
+						</div>
+
+						<div class="faforites__form_item">
+							<label class="favorites__label">
+								<input id="spring" class="favorites__input js-radio" type="radio" name="seasons">
+								<span class="favorites__span">Spring</span>
+							</label>
+						</div>
+
+						<div class="faforites__form_item">
+							<label class="favorites__label">
+								<input id="summer" class="favorites__input js-radio" type="radio" name="seasons">
+								<span class="favorites__span">Summer</span>
+							</label>
+						</div>
+
+						<div class="faforites__form_item">
+							<label class="favorites__label">
+								<input id="autumn" class="favorites__input js-radio" type="radio" name="seasons">
+								<span class="favorites__span">Autumn</span>
+							</label>
+						</div>
 					</div>
-
-					<div class="faforites__form_item">
-						<label class="favorites__label">
-							<input id="spring" class="favorites__input js-radio" type="radio" name="seasons">
-					    <span class="favorites__span">Spring</span>
-						</label>
-					</div>
-
-					<div class="faforites__form_item">
-						<label class="favorites__label">
-							<input id="summer" class="favorites__input js-radio" type="radio" name="seasons">
-							<span class="favorites__span">Summer</span>
-						</label>
-					</div>
-
-					<div class="faforites__form_item">
-						<label class="favorites__label">
-							<input id="autumn" class="favorites__input js-radio" type="radio" name="seasons">
-							<span class="favorites__span">Autumn</span>
-						</label>
-					</div>
-
 				</div>
 
 				<div class="favorites__imgs">
@@ -708,6 +724,41 @@
 
 		</div>
 	</footer>
+
+	<!-- Modal -->
+
+	<!-- Modal overlay-->
+	<div class="overlay js-overlay none"></div>
+
+	<!-- Modal register-->
+	<div class="modal__register none">
+		<div class="register__close">
+			<div class="register__close-line1"></div>
+			<div class="register__close-line2"></div>
+		</div>
+
+		<div class="register__title">Register</div>
+
+		<div class="register__form">
+			<label for="fname" class="register__form-label"><b>First name</b></label>
+			<input type="text" name="fname"  class="register__form-input" required>
+
+			<label for="lname" class="register__form-label"><b>Last name</b></label>
+			<input type="text" name="lname" class="register__form-input" required>
+
+			<label for="email" class="register__form-label"><b>E-mail</b></label>
+			<input type="text" name="email" class="register__form-input" required>
+
+			<label for="psw" class="register__form-label"><b>Password</b></label>
+      <input type="password" name="psw" class="register__form-input" required>
+
+			<button type="submit" class="register__form-submit">Sign Up</button>
+		</div>
+
+		<div class="register__footer">Already have an account? <div class="register__login-btn">Login</div></div>
+	</div>
+
+	<!-- /Modal -->
 </div>
 </body>
 </html>

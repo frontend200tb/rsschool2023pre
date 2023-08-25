@@ -3,28 +3,32 @@ console.log('frontend200tb', 'library start');
 /*********************
 HEADER Burger menu
 *********************/
-const burger = document.getElementsByClassName('js-burger')[0];
-const nav = document.getElementsByClassName('js-nav')[0];
+const burger = document.querySelector('.js-burger');
+const nav = document.querySelector('.js-nav');
+const overlay = document.querySelector('.js-overlay');
 const navItem = document.getElementsByClassName('js-nav-item');
-const overlay = document.getElementsByClassName('js-burger-overlay')[0];
+const navItems = Array.from(navItem);
+
+burger.addEventListener('click', toggleNav);
+navItems.forEach( (elem) => {
+  elem.addEventListener('click', removeNav);
+});
+overlay.addEventListener('click', removeNav);
 
 function toggleNav() {
+  if (!profile.classList.contains('none')) {
+    removeProfile();
+  }
   burger.classList.toggle('active');
   nav.classList.toggle('active');
   overlay.classList.toggle('none');
 }
+
 function removeNav() {
   burger.classList.remove('active');
   nav.classList.remove('active');
   overlay.classList.add('none');
 }
-
-burger.addEventListener('click', toggleNav);
-const navItems = Array.from(navItem);
-navItems.forEach( (elem) => {
-  elem.addEventListener('click', removeNav);
-});
-overlay.addEventListener('click', removeNav);
 /*********************
 /HEADER Burger menu
 *********************/
@@ -146,4 +150,45 @@ function radioCheck(i) {
 }
 /*********************
 /FAVORITES Seasons
+*********************/
+
+
+/*********************
+dropMenu PROFILE
+*********************/
+const profileBtn = document.querySelector('.js-profile-icon');
+const profile = document.querySelector('.js-profile');
+
+profileBtn.addEventListener('click', toggleProfile);
+overlay.addEventListener('click', removeProfile);
+
+function toggleProfile() {
+  if (burger.classList.contains('active')) {
+    removeNav();
+  }
+  profile.classList.toggle('none');
+  overlay.classList.toggle('none');
+}
+
+function removeProfile() {
+  profile.classList.add('none');
+  overlay.classList.add('none');
+}
+/*********************
+/dropMenu PROFILE
+*********************/
+
+
+/*********************
+REGISTER
+*********************/
+const registerBtn = document.querySelector('.register__btn');
+
+registerBtn.addEventListener('click', registerBtnClick);
+
+function registerBtnClick() {
+  
+}
+/*********************
+/REGISTER
 *********************/
