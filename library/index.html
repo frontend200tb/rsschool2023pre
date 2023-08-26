@@ -44,16 +44,16 @@
 
 			<div class="header__icons">
 				<div class="header__icon-profile">
-					<div class="profile-icon js-profile-icon"></div>
+					<div class="profile-icon profile-icon-default js-profile-icon"></div>
 
 					<div class="dropmenu__profile js-profile none">
 						<div class="profile__title">Profile</div>
 						<div class="profile__hr"></div>
 						<div class="profile__txtblock">
-							<div class="login__btn">Log In</div>
-							<div class="register__btn">Register</div>
-							<div class="myprofile__btn none">My profile</div>
-							<div class="logout__btn none">Log Out</div>
+							<div class="login__btn js-login-btn">Log In</div>
+							<div class="register__btn js-register-btn">Register</div>
+							<div class="myprofile__btn js-myprofile-btn none">My profile</div>
+							<div class="logout__btn js-logout-btn none">Log Out</div>
 						</div>
 					</div>
 				</div>
@@ -246,7 +246,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn own" disabled>Own</button>
+									<button class="favorites__book-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -335,7 +335,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn own">Own</button>
+									<button class="favorites__book-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -678,7 +678,7 @@
 						<div class="library__get-txt">You will be able to see a reader card after logging into account or you can register a new account</div>
 
 						<div class="library__get-btns">
-							<button class="library__get-btn" type="submit">Sign Up</button>
+							<button type="submit" class="library__get-btn js-lib-signup-btn">Sign Up</button>
 							<button class="library__get-btn" type="submit">Log in</button>
 						</div>
 					</div>
@@ -729,34 +729,83 @@
 
 	<!-- Modal overlay-->
 	<div class="overlay js-overlay none"></div>
+	<!-- /Modal overlay-->
 
 	<!-- Modal register-->
-	<div class="modal__register none">
-		<div class="register__close">
+	<div class="modal__register js-modal-register none">
+		<div class="register__close js-register-close-btn">
 			<div class="register__close-line1"></div>
 			<div class="register__close-line2"></div>
 		</div>
 
 		<div class="register__title">Register</div>
 
-		<div class="register__form">
-			<label for="fname" class="register__form-label"><b>First name</b></label>
-			<input type="text" name="fname"  class="register__form-input" required>
+		<form class="register__form js-register-form" action="">
+			<label for="fname" class="register__form-label">First name				
+				<div class="tooltip-fname none">Хотя бы один непробельный символ</div>
+			</label>
+			<input type="text" name="fname" id="fname"  class="register__form-input js-fname-input" required>
 
-			<label for="lname" class="register__form-label"><b>Last name</b></label>
-			<input type="text" name="lname" class="register__form-input" required>
+			<label for="lname" class="register__form-label">Last name
+				<div class="tooltip-lname none">Хотя бы один непробельный символ</div>
+			</label>
+			<input type="text" name="lname" id="lname" class="register__form-input js-lname-input" required>
 
-			<label for="email" class="register__form-label"><b>E-mail</b></label>
-			<input type="text" name="email" class="register__form-input" required>
+			<label for="reg-email" class="register__form-label">E-mail
+				<div class="tooltip-email none">E-mail должен содержать @ и .</div>
+			</label>
+			<input type="text" name="email" id="reg-email" class="register__form-input js-email-input" required>
+			
 
-			<label for="psw" class="register__form-label"><b>Password</b></label>
-      <input type="password" name="psw" class="register__form-input" required>
+			<label for="reg-psw" class="register__form-label">Password
+				<div class="tooltip-psw none">Пароль не короче 8 символов</div>
+			</label>
+      <input type="password" name="psw" id="reg-psw" class="register__form-input js-psw-input" required>
+			
 
-			<button type="submit" class="register__form-submit">Sign Up</button>
+			<button type="submit" class="register__form-submit js-signup-btn">Sign Up</button>
+		</form>
+
+		<div class="register__footer">Already have an account?<div class="register__login-btn">Login</div></div>
+	</div>
+	<!-- /Modal register-->
+
+	<!-- Modal login-->
+	<div class="modal__login js-modal-login none">
+		<div class="login__close js-login-close-btn">
+			<div class="login__close-line1"></div>
+			<div class="login__close-line2"></div>
 		</div>
 
-		<div class="register__footer">Already have an account? <div class="register__login-btn">Login</div></div>
+		<div class="login__title">Login</div>
+
+		<form class="login__form js-login-form" action="">
+			<label for="login-email" class="login__form-label">E-mail or readers card
+				<div class="tooltip-email none">E-mail должен содержать @ и .</div>
+			</label>
+			<input type="text" name="email" id="login-email" class="login__form-input js-email-input" required>
+			
+
+			<label for="login-psw" class="login__form-label">Password
+				<div class="tooltip-psw none">Пароль не короче 8 символов</div>
+			</label>
+      <input type="password" name="psw" id="login-psw" class="login__form-input js-psw-input" required>
+			
+			<button type="submit" class="login__form-submit js-login-btn">Log In</button>
+		</form>
+
+		<div class="login__footer">Don’t have an account?<div class="login__register-btn">Register</div></div>
 	</div>
+	<!-- /Modal login-->
+
+	<!-- Modal My Profile-->
+	<div class="modal__myprofile js-modal-myprofile none">
+		<div class="myprofile__wrapper">
+		  <div class="myprofile-left"></div>
+		  <div class="myprofile-right"></div>
+		</div>
+  </div>
+	<!-- /Modal My Profile-->
 
 	<!-- /Modal -->
 </div>

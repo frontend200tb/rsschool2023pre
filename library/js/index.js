@@ -158,9 +158,17 @@ dropMenu PROFILE
 *********************/
 const profileBtn = document.querySelector('.js-profile-icon');
 const profile = document.querySelector('.js-profile');
+const loginBtn = document.querySelector('.js-login-btn');
+const registerBtn = document.querySelector('.js-register-btn');
+const myprofileBtn = document.querySelector('.js-myprofile-btn');
+const logoutBtn = document.querySelector('.js-logout-btn');
+const libSignupBtn = document.querySelector('.js-lib-signup-btn');
 
 profileBtn.addEventListener('click', toggleProfile);
 overlay.addEventListener('click', removeProfile);
+loginBtn.addEventListener('click', loginBtnClick);
+registerBtn.addEventListener('click', registerBtnClick);
+libSignupBtn.addEventListener('click', registerBtnClick);
 
 function toggleProfile() {
   if (burger.classList.contains('active')) {
@@ -174,6 +182,19 @@ function removeProfile() {
   profile.classList.add('none');
   overlay.classList.add('none');
 }
+
+function loginBtnClick() {
+  removeProfile();
+  modalLogin.classList.remove('none');
+  overlay.classList.remove('none');
+}
+
+function registerBtnClick() {
+  removeProfile();
+  modalRegister.classList.remove('none');
+  overlay.classList.remove('none');
+}
+
 /*********************
 /dropMenu PROFILE
 *********************/
@@ -182,13 +203,178 @@ function removeProfile() {
 /*********************
 REGISTER
 *********************/
-const registerBtn = document.querySelector('.register__btn');
+const modalRegister = document.querySelector('.js-modal-register');
+const registerCloseBtn = modalRegister.querySelector('.js-register-close-btn');
+const registerForm = modalRegister.querySelector('.js-register-form');
+const fnameInput = modalRegister.querySelector('.js-fname-input');
+const fnameTooltip = modalRegister.querySelector('.tooltip-fname');
+const lnameInput = modalRegister.querySelector('.js-lname-input');
+const lnameTooltip = modalRegister.querySelector('.tooltip-lname');
+const emailInput = modalRegister.querySelector('.js-email-input');
+const emailTooltip = modalRegister.querySelector('.tooltip-email');
+const pswInput = modalRegister.querySelector('.js-psw-input');
+const pswTooltip = modalRegister.querySelector('.tooltip-psw');
+const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+let currentUser;
 
-registerBtn.addEventListener('click', registerBtnClick);
+registerCloseBtn.addEventListener('click', modalRegisterClose);
+overlay.addEventListener('click', modalRegisterClose);
+registerForm.addEventListener('submit', event => registerCheck(event));
+fnameInput.addEventListener('input', fnameChange);
+lnameInput.addEventListener('input', lnameChange);
+emailInput.addEventListener('input', emailChange);
+pswInput.addEventListener('input', pswChange);
 
-function registerBtnClick() {
-  
+function modalRegisterClose() {
+  modalRegister.classList.add('none');
+  overlay.classList.add('none');
+}
+
+function registerCheck(event) {
+  event.preventDefault();
+  if ( !(fnameInput.value.trim()) ) {
+    fnameInput.focus();
+    fnameTooltip.classList.remove('none');
+    return;
+  } else if (!(lnameInput.value.trim())) {
+    lnameInput.focus();
+    lnameTooltip.classList.remove('none');
+    return;
+  } else if ( !( isEmailValid() ) ) {
+    emailInput.focus();
+    emailTooltip.classList.remove('none');
+    return;
+  } else if ( !( isPswValid() ) ) {
+    console.log(pswInput.value);
+    pswInput.focus();
+    pswTooltip.classList.remove('none');
+    return;
+  }
+  createUser();
+  logStatus = 'logIn';
+  profileWithAuth();
+  modalRegisterClose();
+}
+
+function createUser() {
+  console.log('First name', fnameInput.value);
+  console.log('Last name', lnameInput.value);
+  console.log('E-mail', emailInput.value);
+  console.log('Password', pswInput.value);
+  currentUser = { 
+    fname : fnameInput.value.trim(),
+    lname : lnameInput.value.trim(),
+    email : emailInput.value.trim(),
+    psw : pswInput.value.trim(),
+  }
+  currentUser.cardNumber = createCardNumber();
+  users.push(currentUser);
+  console.log('users', users);
+  localStorage.setItem('library', JSON.stringify(users));
+  changeProfileIcon(currentUser.fname, currentUser.lname);
+}
+
+function isEmailValid() {
+  return EMAIL_REGEXP.test(emailInput.value);
+}
+
+function isPswValid() {
+  return (pswInput.value.trim().length > 7);
+}
+
+function fnameChange() {
+  fnameTooltip.classList.add('none');
+}
+
+function lnameChange() {
+  lnameTooltip.classList.add('none');
+}
+
+function emailChange() {
+  emailTooltip.classList.add('none');
+}
+
+function pswChange() {
+  pswTooltip.classList.add('none');
+}
+
+function changeProfileIcon(first, last) {
+  profileBtn.classList.remove('profile-icon-default');
+  let firstLetter = first.charAt(0).toUpperCase();
+  let secondLetter = last.charAt(0).toUpperCase();
+  profileBtn.innerText = firstLetter + secondLetter;
+}
+
+function createCardNumber() {
+  let hexNumber = 123456789;
+  return hexNumber;
+}
+
+function profileWithAuth() {
+  loginBtn.classList.add('none');
+  registerBtn.classList.add('none');
+  myprofileBtn.classList.remove('none');
+  logoutBtn.classList.remove('none');
 }
 /*********************
 /REGISTER
+*********************/
+
+
+/*********************
+LOGIN
+*********************/
+const modalLogin = document.querySelector('.js-modal-login');
+const loginCloseBtn = modalLogin.querySelector('.js-login-close-btn');
+const loginForm = modalLogin.querySelector('.js-login-form');
+
+loginCloseBtn.addEventListener('click', modalLoginClose);
+overlay.addEventListener('click', modalLoginClose);
+loginForm.addEventListener('submit', event => loginCheck(event));
+
+function modalLoginClose() {
+  modalLogin.classList.add('none');
+  overlay.classList.add('none');
+}
+
+function loginCheck(event) {
+  event.preventDefault();
+  if ( !( isEmailValid() ) ) {
+    emailInput.focus();
+    emailTooltip.classList.remove('none');
+    return;
+  } else if ( !( isPswValid() ) ) {
+    console.log(pswInput.value);
+    pswInput.focus();
+    pswTooltip.classList.remove('none');
+    return;
+  }
+  createUser();
+}
+
+/*********************
+/LOGIN
+*********************/
+
+
+/*********************
+LOCAL STORAGE
+*********************/
+let users = JSON.parse(localStorage.getItem('library'));
+if (!users) {
+  users = [];
+}
+console.log('localStorage', users);
+
+/*********************
+/LOCAL STORAGE
+*********************/
+
+
+/*********************
+STATUS
+*********************/
+let logStatus = 'logOut';
+/*********************
+/STATUS
 *********************/
