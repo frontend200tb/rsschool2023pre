@@ -10,7 +10,7 @@
 	<meta name="description" content="frontend HTML CSS JavaScript">
 	<meta name="keywords" content="frontend200tb rsschool library">
 	<title>Library</title>
-	<link rel="icon" type="image/png" href="assets/img/favicon.png">
+	<link rel="icon" type="image/png" href="favicon.png">
 	<link rel="stylesheet" href="css/font.css">
 	<link rel="stylesheet" href="css/style.css">
 	<script src="js/index.js" defer></script>
@@ -91,7 +91,7 @@
 				<div class="about__txt">The Brooklyn Library is a free workspace, a large number of books and a cozy coffee shop inside</div>
 
         <div class="about__frame">
-					<img src="assets/svg/Carret_Left.svg" alt="left" class="carret js-carret">
+					<div class="carret js-carret"></div>
 
 					<div class="about__carousel">
 						<div class="about__imgs">
@@ -123,7 +123,7 @@
 						</div>
 				  </div>
 					
-				  <img src="assets/svg/Carret_Right.svg" alt="right" class="carret js-carret">
+				  <div class="carret js-carret"></div>
 			  </div>
 
 			</section>
@@ -182,7 +182,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 
@@ -204,7 +204,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -225,7 +225,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -246,7 +246,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -271,7 +271,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 
@@ -293,7 +293,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -314,7 +314,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -335,7 +335,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -360,7 +360,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 
@@ -382,7 +382,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -403,7 +403,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -424,7 +424,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -449,7 +449,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 
@@ -471,7 +471,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -492,7 +492,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -513,7 +513,7 @@
 								</div>
 								
 								<div>
-									<button class="favorites__book-btn">Buy</button>
+									<button class="favorites__book-btn js-buy-btn">Buy</button>
 								</div>
 							</div>
 							<div class="favorites__book_img">
@@ -679,7 +679,7 @@
 
 						<div class="library__get-btns">
 							<button type="submit" class="library__get-btn js-lib-signup-btn">Sign Up</button>
-							<button class="library__get-btn" type="submit">Log in</button>
+							<button class="library__get-btn js-lib-login-btn" type="submit">Log in</button>
 						</div>
 					</div>
 				</div>
@@ -733,32 +733,34 @@
 
 	<!-- Modal register-->
 	<div class="modal__register js-modal-register none">
-		<div class="register__close js-register-close-btn">
-			<div class="register__close-line1"></div>
-			<div class="register__close-line2"></div>
+		<div class="register__close-wrapper js-register-close-btn">
+			<div class="close__btn">
+				<div class="close__btn-line1"></div>
+				<div class="close__btn-line2"></div>
+			</div>
 		</div>
 
 		<div class="register__title">Register</div>
 
 		<form class="register__form js-register-form" action="">
 			<label for="fname" class="register__form-label">First name				
-				<div class="tooltip-fname none">Хотя бы один непробельный символ</div>
+				<div class="tooltip js-tooltip-fname none">At least one character</div>
 			</label>
 			<input type="text" name="fname" id="fname"  class="register__form-input js-fname-input" required>
 
 			<label for="lname" class="register__form-label">Last name
-				<div class="tooltip-lname none">Хотя бы один непробельный символ</div>
+				<div class="tooltip js-tooltip-lname none">At least one character</div>
 			</label>
 			<input type="text" name="lname" id="lname" class="register__form-input js-lname-input" required>
 
 			<label for="reg-email" class="register__form-label">E-mail
-				<div class="tooltip-email none">E-mail должен содержать @ и .</div>
+				<div class="tooltip js-tooltip-email none">Invalid E-mail</div>
 			</label>
 			<input type="text" name="email" id="reg-email" class="register__form-input js-email-input" required>
 			
 
 			<label for="reg-psw" class="register__form-label">Password
-				<div class="tooltip-psw none">Пароль не короче 8 символов</div>
+				<div class="tooltip js-tooltip-psw none">Password at least 8 characters</div>
 			</label>
       <input type="password" name="psw" id="reg-psw" class="register__form-input js-psw-input" required>
 			
@@ -766,47 +768,100 @@
 			<button type="submit" class="register__form-submit js-signup-btn">Sign Up</button>
 		</form>
 
-		<div class="register__footer">Already have an account?<div class="register__login-btn">Login</div></div>
+		<div class="register__footer">Already have an account?<div class="register__login-btn js-register-login-btn">Login</div></div>
 	</div>
 	<!-- /Modal register-->
 
 	<!-- Modal login-->
 	<div class="modal__login js-modal-login none">
-		<div class="login__close js-login-close-btn">
-			<div class="login__close-line1"></div>
-			<div class="login__close-line2"></div>
+		<div class="login__close-wrapper js-login-close-btn">
+			<div class="close__btn">
+				<div class="close__btn-line1"></div>
+				<div class="close__btn-line2"></div>
+			</div>
 		</div>
 
 		<div class="login__title">Login</div>
 
 		<form class="login__form js-login-form" action="">
 			<label for="login-email" class="login__form-label">E-mail or readers card
-				<div class="tooltip-email none">E-mail должен содержать @ и .</div>
+				<div class="tooltip js-tooltip-email none">Invalid E-mail</div>
 			</label>
 			<input type="text" name="email" id="login-email" class="login__form-input js-email-input" required>
-			
 
 			<label for="login-psw" class="login__form-label">Password
-				<div class="tooltip-psw none">Пароль не короче 8 символов</div>
+				<div class="tooltip js-tooltip-psw none">Password at least 8 characters</div>
 			</label>
       <input type="password" name="psw" id="login-psw" class="login__form-input js-psw-input" required>
 			
 			<button type="submit" class="login__form-submit js-login-btn">Log In</button>
 		</form>
 
-		<div class="login__footer">Don’t have an account?<div class="login__register-btn">Register</div></div>
+		<div class="login__footer">Don’t have an account?<div class="login__register-btn js-login-register-btn">Register</div></div>
 	</div>
 	<!-- /Modal login-->
 
 	<!-- Modal My Profile-->
 	<div class="modal__myprofile js-modal-myprofile none">
 		<div class="myprofile__wrapper">
-		  <div class="myprofile-left"></div>
-		  <div class="myprofile-right"></div>
+		  <div class="myprofile__left">
+				<div class="myprofile__left-wrapper">
+					<div class="myprofile__left-initial js-initials">JD</div>
+					<div class="myprofile__left-name js-name">John Doe</div>
+				</div>
+			</div>
+
+		  <div class="myprofile__right">
+				<div class="myprofile__close-wrapper js-myprofile-close-btn">
+					<div class="close__btn">
+						<div class="close__btn-line1"></div>
+						<div class="close__btn-line2"></div>
+					</div>
+				</div>
+		
+				<div class="myprofile__title">My profile</div>
+
+				<div class="myprofile__statistics">
+					<div class="stat__item">
+						<div class="stat__item-title">Visits</div>
+						<div class="stat__item-icon visits-icon"></div>
+						<div class="stat__item-num">23</div>
+					</div>
+
+					<div class="stat__item">						
+						<div class="stat__item-title">Bonuses</div>
+					  <div class="stat__item-icon bonuses-icon"></div>
+					  <div class="stat__item-num">1240</div>
+          </div>
+
+					<div class="stat__item">
+						<div class="stat__item-title">Books</div>
+					  <div class="stat__item-icon books-icon"></div>
+					  <div class="stat__item-num">2</div>
+					</div>
+				</div>
+
+				<div class="myprofile__books">
+					<div class="books-title">Rented books</div>
+					<ul class="books-list">
+						<li class="books-list-item">The Last Queen, Clive Irving</li>
+						<li class="books-list-item">Dominicana, Angie Cruz</li>
+					</ul>
+				</div>
+
+				<div class="myprofile__card-number">
+					<div class="card-title">Card number</div>
+					<div class="card-number js-card">F00234030</div>
+					<div class="card-icon" title="copy"></div>
+				</div>
+		
+			</div>
 		</div>
   </div>
 	<!-- /Modal My Profile-->
 
+	<!-- Modal Buy a Library Card-->
+	<!-- /Modal Buy a Library Card-->
 	<!-- /Modal -->
 </div>
 </body>
