@@ -1763,6 +1763,125 @@ MODAL MY PROFILE
 /MODAL MY PROFILE
 *********************/
 
+
+/*********************
+MODAL BUY A LIBRARY CARD
+*********************/
+.modal__buy-card {
+  width: 650px;
+  height: 540px;
+  position: fixed;
+  top: calc(50% - 270px);
+  left: calc(50% - 325px);
+  z-index: 11;
+  border: 1px solid black;
+  background-color: #fff;
+}
+
+.buy-card__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 650px;
+  height: 60px;
+  font-family: 'Forum', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 20px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: white;
+  background-color: var(--dark);
+}
+
+.buy-card__close-wrapper {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.buy-card__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+
+.buy-card__left {
+  width: 200px;
+  height: 410px;
+}
+
+.buy-card__form {
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+}
+
+.form__wrap {
+  margin-bottom: 20px;
+  width: 200px;
+  height: 170px;
+}
+.bank-card__form-label {
+  display: block;
+}
+
+.bank-card__form-input {
+  margin: 10px 0;
+  width: 100%;
+  height: 20px;
+  border: 1px solid var(--gold);
+}
+
+.w45 {
+  width: 45px;
+}
+
+.buy__wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.bank-card__form-submit {
+  width: 75px;
+  height: 30px;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12.1px;
+  letter-spacing: 1px;
+  background-color: #fff;
+  border: 1px solid black;
+}
+
+.buy-card-price {
+  display: inline-block;
+  margin-left: 25px;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.buy-card__right {
+  width: 330px;
+  height: 160px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 2px;
+}
+/*********************
+/MODAL BUY A LIBRARY CARD
+*********************/
 /*********************
 /MODAL
 *********************/

@@ -733,14 +733,14 @@
 
 	<!-- Modal register-->
 	<div class="modal__register js-modal-register none">
+		<div class="register__title">Register</div>
+
 		<div class="register__close-wrapper js-register-close-btn">
 			<div class="close__btn">
 				<div class="close__btn-line1"></div>
 				<div class="close__btn-line2"></div>
 			</div>
 		</div>
-
-		<div class="register__title">Register</div>
 
 		<form class="register__form js-register-form" action="">
 			<label for="fname" class="register__form-label">First name				
@@ -774,14 +774,14 @@
 
 	<!-- Modal login-->
 	<div class="modal__login js-modal-login none">
+		<div class="login__title">Login</div>
+
 		<div class="login__close-wrapper js-login-close-btn">
 			<div class="close__btn">
 				<div class="close__btn-line1"></div>
 				<div class="close__btn-line2"></div>
 			</div>
 		</div>
-
-		<div class="login__title">Login</div>
 
 		<form class="login__form js-login-form" action="">
 			<label for="login-email" class="login__form-label">E-mail or readers card
@@ -812,6 +812,8 @@
 			</div>
 
 		  <div class="myprofile__right">
+				<div class="myprofile__title">My profile</div>
+
 				<div class="myprofile__close-wrapper js-myprofile-close-btn">
 					<div class="close__btn">
 						<div class="close__btn-line1"></div>
@@ -819,8 +821,6 @@
 					</div>
 				</div>
 		
-				<div class="myprofile__title">My profile</div>
-
 				<div class="myprofile__statistics">
 					<div class="stat__item">
 						<div class="stat__item-title">Visits</div>
@@ -861,6 +861,67 @@
 	<!-- /Modal My Profile-->
 
 	<!-- Modal Buy a Library Card-->
+	<div class="modal__buy-card">
+		<div class="buy-card__title">Buy a library card</div>
+
+		<div class="buy-card__close-wrapper js-buy-card-close-btn">
+			<div class="close__btn">
+				<div class="close__btn-line1 bg-white"></div>
+				<div class="close__btn-line2 bg-white"></div>
+			</div>
+		</div>
+
+		<div class="buy-card__wrapper">
+			<div class="buy-card__left">
+				<form class="buy-card__form js-buy-card-form" action="">
+					<div class="form__wrap">
+						<label for="bank-card-number" class="bank-card__form-label">Bank card number
+							<div class="tooltip js-tooltip-number none">At least one character</div>
+						</label>
+						<input type="text" name="number" id="bank-card-number" class="bank-card__form-input js-number-input" required>
+			
+						<label for="bank-card-expcode" class="bank-card__form-label">Expiration code
+							<div class="tooltip js-tooltip-expcode none">At least one character</div>
+						</label>
+						<input type="text" name="expcode" id="bank-card-expcode" class="bank-card__form-input w45 js-expcode1-input" required>
+						<input type="text" name="expcode" id="bank-card-expcode" class="bank-card__form-input w45 js-expcode2-input" required>
+
+						<label for="bank-card-cvc" class="bank-card__form-label">CVC
+							<div class="tooltip js-tooltip-cvc none">At least one character</div>
+						</label>
+						<input type="text" name="cvc" id="bank-card-cvc" class="bank-card__form-input w45 js-code-input" required>
+					</div>
+
+					<div class="form__wrap">
+						<label for="bank-card-name" class="bank-card__form-label">Cardholder name
+							<div class="tooltip js-tooltip-cvc none">At least one character</div>
+						</label>
+						<input type="text" name="name" id="bank-card-name" class="bank-card__form-input js-name-input" required>
+
+						<label for="bank-card-postcode" class="bank-card__form-label">Postal code
+							<div class="tooltip js-tooltip-postcode none">At least one character</div>
+						</label>
+						<input type="text" name="postcode" id="bank-card-postcode" class="bank-card__form-input js-postcode-input" required>
+
+						<label for="bank-card-city" class="bank-card__form-label">City / Town
+							<div class="tooltip js-tooltip-city none">At least one character</div>
+						</label>
+						<input type="text" name="city" id="bank-card-city" class="bank-card__form-input js-city-input" required>
+          </div>
+
+					<div class="buy__wrap">
+						<button type="submit" class="bank-card__form-submit js-bank-card-btn">Buy</button>
+
+						<div class="buy-card-price">$ 25.00</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="buy-card__right">If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital library card right now using this online form. Visitors to New York State can also use this form to apply for a temporary card.
+			</div>
+		</div>
+
+	</div>
 	<!-- /Modal Buy a Library Card-->
 	<!-- /Modal -->
 </div>
