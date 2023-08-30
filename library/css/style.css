@@ -1056,28 +1056,44 @@ LIBRARY CARDS
   border-style: none;
 }
 
-.library__goldcard-check {
+.library__goldcard-btn {
+  display: block;
   margin: 19px auto 0;
   width: 242px;
   height: 44px;
-}
-
-.library__goldcard-btn {
-  width: 100%;
-  height: 100%;
   font-family: 'Inter', Verdana, sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: auto;
   letter-spacing: 1px;
+  cursor: pointer;
   background-color: var(--white);
 }
 
 .library__goldcard-btn:hover {
   border-color: var(--gold);
-  cursor: pointer;
   background-color: var(--gold);  
   transition: all 0.7s ease;
+}
+
+.library__stat-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 94px;
+}
+/* card statistics */
+.card__statistics {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 169px;
+  height: 63px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
 }
 
 .library__get {
@@ -1137,6 +1153,7 @@ LIBRARY CARDS
   color: var(--dark);
   border: 1px solid var(--dark);
   border-radius: 2px;
+  cursor: pointer;
   background-color: var(--white);
 }
 
@@ -1146,7 +1163,6 @@ LIBRARY CARDS
 
 .library__get-btn:hover {
   border-color: var(--gold);
-  cursor: pointer;
   background-color: var(--gold);
   transition: all 0.7s ease;
 }
@@ -1407,6 +1423,12 @@ MODAL REGISTER
   border-radius: 3px;
   background-color: #fff;
 }
+
+.register__form-submit:hover {
+  border-color: var(--gold);
+  background-color: var(--gold);  
+  transition: all 0.7s ease;
+}
 /* /register form */
 
 /* register footer */
@@ -1514,9 +1536,15 @@ MODAL LOGIN
   font-size: 10px;
   line-height: 12.1px;
   letter-spacing: 1px;
-  cursor: pointer;
   border-radius: 3px;
+  cursor: pointer;
   background-color: #fff;
+}
+
+.login__form-submit:hover {
+  border-color: var(--gold);
+  background-color: var(--gold);  
+  transition: all 0.7s ease;
 }
 /* /login form */
 
@@ -1652,7 +1680,7 @@ MODAL MY PROFILE
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 81px;
+  height: 100%;
 }
 
 .stat__item-title {
@@ -1858,8 +1886,15 @@ MODAL BUY A LIBRARY CARD
   font-size: 10px;
   line-height: 12.1px;
   letter-spacing: 1px;
-  background-color: #fff;
   border: 1px solid black;
+  cursor: pointer;
+  background-color: #fff;
+}
+
+.bank-card__form-submit:hover {
+  border-color: var(--gold);
+  background-color: var(--gold);  
+  transition: all 0.7s ease;
 }
 
 .buy-card-price {
