@@ -300,6 +300,8 @@ function registerCheck(event) {
     return;
   }
   createUser();
+  changeProfileIcon(currentUser.fname, currentUser.lname);
+  changeMyProfile(currentUser.fname, currentUser.lname, currentUser.cardNumber);
   logStatus = 'logIn';
   profileWithAuth();
   event.target.reset();
@@ -321,8 +323,6 @@ function createUser() {
   users.push(currentUser);
   console.log('users', users);
   localStorage.setItem('library', JSON.stringify(users));
-  changeProfileIcon(currentUser.fname, currentUser.lname);
-  changeMyProfile(currentUser.fname, currentUser.lname, currentUser.cardNumber);
 }
 
 function isEmailValid(email) {
@@ -424,11 +424,21 @@ function loginCheck(event) {
     pswLoginTooltip.classList.remove('none');
     return;
   }
-  checkUser();
+  if (hasUserLogin()) {
+    currentUser = hasUserLogin();
+    changeProfileIcon(currentUser.fname, currentUser.lname);
+    changeMyProfile(currentUser.fname, currentUser.lname, currentUser.cardNumber);
+    logStatus = 'logIn';
+    profileWithAuth();
+    event.target.reset();
+    closeModalLogin();
+  };
 }
 
-function checkUser() {
-  return;
+function hasUserLogin() {
+  return users.find(function(item){
+    return ((emailLoginInput.value === item.email) && (pswLoginInput.value === item.psw));
+  });
 }
 /*********************
 /LOGIN
@@ -518,4 +528,43 @@ let logStatus = 'logOut';
 let hasCard = false;
 /*********************
 /STATUS
+*********************/
+
+
+/*********************
+CHECK THE CARD
+*********************/
+const findCardForm = document.querySelector('.js-find-card-form');
+const checkCardNameInput = findCardForm.querySelector('.js-find-card-name');
+const checkCardNumberInput = findCardForm.querySelector('.js-find-card-number');
+const checkCardBtn = findCardForm.querySelector('.js-check-card-btn');
+const cardStat = findCardForm.querySelector('.js-card-stat');
+
+findCardForm.addEventListener('submit', event => checkCard(event));
+
+function checkCard(event) {
+  event.preventDefault();
+  if (users.length === 0) {
+    console.log('no registered users', users);
+    return;
+  } 
+  if (hasUser()) {
+    checkCardBtn.classList.add('none');
+    cardStat.classList.remove('none');
+    setTimeout(() => {
+      cardStat.classList.add('none');
+      checkCardBtn.classList.remove('none');
+    }, 1000);
+  } else {
+    console.log('no');
+  }
+}
+
+function hasUser() {
+  return users.find(function(item){
+    return ((checkCardNameInput.value === item.fname) && (checkCardNumberInput.value === item.cardNumber));
+  });
+}
+/*********************
+/CHECK THE CARD
 *********************/
