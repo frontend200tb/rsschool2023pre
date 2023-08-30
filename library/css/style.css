@@ -184,7 +184,7 @@ header__icons
 
 .profile-icon-default {
   background-color: transparent;
-  background-image: url('../assets/svg/icon_profile.svg');
+  background-image: url('../assets/svg/header-icon-profile.svg');
   background-size: contain;
   background-repeat: no-repeat;  
 }
@@ -367,6 +367,14 @@ ABOUT
     height: 24px;
     cursor: pointer;
   }
+}
+
+.carret:first-child {
+  background-image: url(../assets/svg/about-carret-left.svg);
+}
+
+.carret:last-child {
+  background-image: url(../assets/svg/about-carret-right.svg);
 }
 
 .carret-disable {
@@ -1198,7 +1206,7 @@ FOOTER
   width: 24px;
   height: 24px;
   cursor: pointer;
-  background-image: url(../assets/svg/icon_twitter.svg);
+  background-image: url(../assets/svg/footer-icon-twitter.svg);
 }
 
 .footer__instagram {
@@ -1206,7 +1214,7 @@ FOOTER
   width: 24px;
   height: 24px;
   cursor: pointer;
-  background-image: url(../assets/svg/icon_instagram.svg);
+  background-image: url(../assets/svg/footer-icon-instagram.svg);
 }
 
 .footer__facebook {
@@ -1214,7 +1222,7 @@ FOOTER
   width: 24px;
   height: 24px;
   cursor: pointer;
-  background-image: url(../assets/svg/icon_facebook.svg);
+  background-image: url(../assets/svg/footer-icon-facebook.svg);
 }
 
 .footer__line {
@@ -1264,7 +1272,10 @@ FOOTER
 MODAL
 *********************/
 
-/* overlay */
+
+/*********************
+OVERLAY
+*********************/
 .overlay {
   position: fixed;
   top: 0;
@@ -1274,9 +1285,47 @@ MODAL
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
-/* /overlay */
+/*********************
+/OVERLAY
+*********************/
 
-/* modal register */
+
+/*********************
+CLOSE BUTTON
+*********************/
+.close__btn {
+  width: 15px;
+  height: 15px;
+  position: relative;
+}
+
+.close__btn-line1 {
+  width: 21.11px;
+  height: 3px;
+  position: absolute;
+  top: 5px;
+  right: -3px;
+  background-color: #0C0C0E;
+  transform: rotate(45deg);
+}
+
+.close__btn-line2 {
+  width: 21.11px;
+  height: 3px;
+  position: absolute;
+  top: 5px;  
+  right: -3px;
+  background-color: #0C0C0E;
+  transform: rotate(-45deg);
+}
+/*********************
+/CLOSE BUTTON
+*********************/
+
+
+/*********************
+MODAL REGISTER
+*********************/
 .modal__register {
   width: 250px;
   height: 382px;
@@ -1287,33 +1336,11 @@ MODAL
   z-index: 11;
 }
 
-.register__close {
-  width: 15px;
-  height: 15px;
+.register__close-wrapper {
   position: absolute;
   top: 15px;
   right: 15px;
   cursor: pointer;
-}
-
-.register__close-line1 {
-  width: 21.11px;
-  height: 3px;
-  position: absolute;
-  top: 0px;
-  right: -5px;
-  background-color: #0C0C0E;
-  transform: rotate(45deg);
-}
-
-.register__close-line2 {
-  width: 21.11px;
-  height: 3px;
-  position: absolute;
-  top: 0px;  
-  right: -5px;
-  background-color: #0C0C0E;
-  transform: rotate(-45deg);
 }
 
 .register__title {
@@ -1327,6 +1354,7 @@ MODAL
   text-align: center;
 }
 
+/* register form */
 .register__form {
   margin: 20px auto 0px;
   width: 200px;
@@ -1352,16 +1380,16 @@ MODAL
   border: 1px solid var(--gold);
 }
 
-.tooltip-fname,
-.tooltip-lname,
-.tooltip-email,
-.tooltip-psw {
+.tooltip {
+  margin-left: -5%;
   padding: 5px;
+  width: 110%;
   position: absolute;
   top: 55px;
   font-size: 10px;
-  color: #444;
-  border: 1px solid #444;
+  color: orange;
+  border-radius: 5px;
+  border: 1px solid orange;
   background-color: #fff;
   z-index: 10;
 }
@@ -1379,7 +1407,9 @@ MODAL
   border-radius: 3px;
   background-color: #fff;
 }
+/* /register form */
 
+/* register footer */
 .register__footer {
   margin: 10px auto;
   width: 200px;
@@ -1400,9 +1430,15 @@ MODAL
   letter-spacing: 1px;
   cursor: pointer;
 }
-/* /modal register */
+/* register footer */
+/*********************
+/MODAL REGISTER
+*********************/
 
-/* modal login */
+
+/*********************
+MODAL LOGIN
+*********************/
 .modal__login {
   width: 250px;
   height: 262px;
@@ -1413,33 +1449,11 @@ MODAL
   z-index: 11;
 }
 
-.login__close {
-  width: 15px;
-  height: 15px;
+.login__close-wrapper {
   position: absolute;
   top: 15px;
   right: 15px;
   cursor: pointer;
-}
-
-.login__close-line1 {
-  width: 21.11px;
-  height: 3px;
-  position: absolute;
-  top: 0px;
-  right: -5px;
-  background-color: #0C0C0E;
-  transform: rotate(45deg);
-}
-
-.login__close-line2 {
-  width: 21.11px;
-  height: 3px;
-  position: absolute;
-  top: 0px;  
-  right: -5px;
-  background-color: #0C0C0E;
-  transform: rotate(-45deg);
 }
 
 .login__title {
@@ -1453,6 +1467,7 @@ MODAL
   text-align: center;
 }
 
+/* login form */
 .login__form {
   margin: 20px auto 0px;
   width: 200px;
@@ -1503,7 +1518,9 @@ MODAL
   border-radius: 3px;
   background-color: #fff;
 }
+/* /login form */
 
+/* login footer */
 .login__footer {
   margin: 10px auto;
   width: 200px;
@@ -1524,17 +1541,21 @@ MODAL
   letter-spacing: 1px;
   cursor: pointer;
 }
+/* /login footer */
+/*********************
+/MODAL LOGIN
+*********************/
 
-/* /modal login */
 
-/* modal My Profile */
+/*********************
+MODAL MY PROFILE
+*********************/
 .modal__myprofile {
   width: 600px;
   height: 400px;
   position: fixed;
   top: calc(50% - 200px);
   left: calc(50% - 300px);
-  background-color: #3ff;
   z-index: 11;
 }
 
@@ -1543,19 +1564,324 @@ MODAL
   flex-direction: row;
 }
 
-.myprofile-left {
+/* my profile lest */
+.myprofile__left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 170px;
   height: 400px;
   background-color: var(--dark);
 }
 
-.myprofile-right {
+.myprofile__left-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 120px;
+  height: 125px;
+}
+
+.myprofile__left-initial {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: var(--gold);
+  background-color: #fff;
+}
+
+.myprofile__left-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 30px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  background-color: #fff;
+}
+/* /my profile lest */
+
+/* my profile right */
+.myprofile__right {
+  padding-left: 20px;
   width: 430px;
   height: 400px;
-  background-color: #ff4;
+  border: 1px solid black;
+  background-color: #fff;
 }
-/* /modal My Profile */
 
+.myprofile__close-wrapper {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  cursor: pointer;
+}
+
+.myprofile__title {
+  margin-top: 40px;
+  text-transform: uppercase;
+  font-family: 'Forum', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 20px;
+  letter-spacing: 0.8px;
+}
+
+/* my profile statistics */
+.myprofile__statistics {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 40px;
+  width: 237px;
+  height: 81px;
+}
+
+.stat__item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 81px;
+}
+
+.stat__item-title {
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.stat__item-icon {
+  width: 20px;
+  height: 21px;
+}
+
+.visits-icon {
+  background-image: url(../assets/svg/stat-visits.svg);
+}
+
+.bonuses-icon {
+  background-image: url(../assets/svg/stat-bonuses.svg);
+}
+
+.books-icon {
+  background-image: url(../assets/svg/stat-books.svg);
+}
+
+.stat__item-num {
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 20px;
+  letter-spacing: 0.2px;
+}
+/* /my profile statistics */
+
+/* my profile rented books */
+.myprofile__books {
+  margin-top: 20px;
+  height: 100px;
+}
+
+.books-title {
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 20px;
+}
+
+.books-list {
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.books-list-item {
+  margin-top: 10px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: 2px;
+}
+
+.books-list-item::before {
+  content: '';
+  margin-right: -1px;
+}
+/* /my profile rented books */
+
+/* my profile card number */
+.myprofile__card-number {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+  width: 280.31px;
+  height: 20px;
+}
+
+.card-title {
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+}
+
+.card-number {
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 20px;
+  color: var(--gold);
+}
+
+.card-icon {
+  width: 13.31px;
+  height: 12px;
+  cursor: pointer;
+  background-image: url(../assets/svg/myprofile-card.svg);
+}
+
+.card-icon:active {
+  transform: scale(1.2);
+}
+/* /my profile card number */
+/* /my profile right */
+/*********************
+/MODAL MY PROFILE
+*********************/
+
+
+/*********************
+MODAL BUY A LIBRARY CARD
+*********************/
+.modal__buy-card {
+  width: 650px;
+  height: 540px;
+  position: fixed;
+  top: calc(50% - 270px);
+  left: calc(50% - 325px);
+  z-index: 11;
+  border: 1px solid black;
+  background-color: #fff;
+}
+
+.buy-card__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 650px;
+  height: 60px;
+  font-family: 'Forum', serif;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 20px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: white;
+  background-color: var(--dark);
+}
+
+.buy-card__close-wrapper {
+  position: absolute;
+  top: 25px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.bg-white {
+  background-color: #fff;
+}
+
+.buy-card__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 30px;
+}
+
+.buy-card__left {
+  width: 200px;
+  height: 410px;
+}
+
+.buy-card__form {
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 0.3px;
+}
+
+.form__wrap {
+  margin-bottom: 20px;
+  width: 200px;
+  height: 170px;
+}
+.bank-card__form-label {
+  display: block;
+}
+
+.bank-card__form-input {
+  margin: 10px 0;
+  width: 100%;
+  height: 20px;
+  border: 1px solid var(--gold);
+}
+
+.w45 {
+  width: 45px;
+}
+
+.buy__wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.bank-card__form-submit {
+  width: 75px;
+  height: 30px;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 12.1px;
+  letter-spacing: 1px;
+  background-color: #fff;
+  border: 1px solid black;
+}
+
+.buy-card-price {
+  display: inline-block;
+  margin-left: 25px;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+
+.buy-card__right {
+  width: 330px;
+  height: 160px;
+  font-family: 'Inter', Verdana, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: 2px;
+}
+/*********************
+/MODAL BUY A LIBRARY CARD
+*********************/
 /*********************
 /MODAL
 *********************/
