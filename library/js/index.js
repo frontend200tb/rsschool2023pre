@@ -258,7 +258,6 @@ const emailRegisterTooltip = modalRegister.querySelector('.js-tooltip-email');
 const pswRegisterInput = modalRegister.querySelector('.js-psw-input');
 const pswRegisterTooltip = modalRegister.querySelector('.js-tooltip-psw');
 const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-let currentUser;
 
 registerCloseBtn.addEventListener('click', closeModalRegister);
 overlay.addEventListener('click', closeModalRegister);
@@ -444,9 +443,11 @@ const mypofileCloseBtn = modalMyProfile.querySelector('.js-myprofile-close-btn')
 const mypofileInitials = modalMyProfile.querySelector('.js-initials');
 const mypofileName = modalMyProfile.querySelector('.js-name');
 const mypofileCard = modalMyProfile.querySelector('.js-card');
+const copyBtn = modalMyProfile.querySelector('.js-copy');
 
 mypofileCloseBtn.addEventListener('click', closeModalMyProfile);
 overlay.addEventListener('click', closeModalMyProfile);
+copyBtn.addEventListener('click', copy);
 
 function closeModalMyProfile() {
   modalMyProfile.classList.add('none');
@@ -460,9 +461,19 @@ function changeMyProfile(first, last, card) {
   mypofileName.innerText = `${first} ${last}`;
   mypofileCard.innerText = card;
 }
-
 /*********************
 /MY PROFILE
+*********************/
+
+
+/*********************
+COPY TO CLIPBOARD
+*********************/
+function copy() {
+  navigator.clipboard.writeText(currentUser.cardNumber);
+}
+/*********************
+/COPY TO CLIPBOARD
 *********************/
 
 
@@ -502,6 +513,7 @@ console.log('localStorage', users);
 STATUS
 *********************/
 /* before registration */
+let currentUser;
 let logStatus = 'logOut';
 let hasCard = false;
 /*********************
