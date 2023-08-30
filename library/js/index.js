@@ -186,7 +186,14 @@ regLoginBtn.addEventListener('click', () => {
 });
 buyBtn.forEach(elem => elem.addEventListener('click', () => {
   if (logStatus === 'logOut') {
+    console.log('logStatus', logStatus, 'hasCard', hasCard);
     openModalLogin();
+    return;
+  }
+  if (logStatus === 'logIn' && !hasCard) {
+    console.log('logStatus', logStatus, 'hasCard', hasCard);
+    openModalBuyCard();
+    return;
   }
 }));
 /* /login buttons */
@@ -223,6 +230,11 @@ function openModalLogin() {
 function openModalMyProfile() {
   removeProfile();
   modalMyProfile.classList.remove('none');
+  overlay.classList.remove('none');
+}
+
+function openModalBuyCard() {
+  modalBuyCard.classList.remove('none');
   overlay.classList.remove('none');
 }
 
@@ -455,6 +467,24 @@ function changeMyProfile(first, last, card) {
 
 
 /*********************
+BUY A LIBRARY CARD
+*********************/
+const modalBuyCard = document.querySelector('.js-modal__buy-card');
+const buyCardCloseBtn = modalBuyCard.querySelector('.js-buy-card-close-btn');
+
+buyCardCloseBtn.addEventListener('click', closeModalBuyCard);
+overlay.addEventListener('click', closeModalBuyCard);
+
+function closeModalBuyCard() {
+  modalBuyCard.classList.add('none');
+  overlay.classList.add('none');
+}
+/*********************
+/BUY A LIBRARY CARD
+*********************/
+
+
+/*********************
 LOCAL STORAGE
 *********************/
 let users = JSON.parse(localStorage.getItem('library'));
@@ -471,7 +501,9 @@ console.log('localStorage', users);
 /*********************
 STATUS
 *********************/
+/* before registration */
 let logStatus = 'logOut';
+let hasCard = false;
 /*********************
 /STATUS
 *********************/
