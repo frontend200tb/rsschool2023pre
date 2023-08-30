@@ -258,7 +258,6 @@ const emailRegisterTooltip = modalRegister.querySelector('.js-tooltip-email');
 const pswRegisterInput = modalRegister.querySelector('.js-psw-input');
 const pswRegisterTooltip = modalRegister.querySelector('.js-tooltip-psw');
 const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
-let currentUser;
 
 registerCloseBtn.addEventListener('click', closeModalRegister);
 overlay.addEventListener('click', closeModalRegister);
@@ -301,6 +300,8 @@ function registerCheck(event) {
     return;
   }
   createUser();
+  changeProfileIcon(currentUser.fname, currentUser.lname);
+  changeMyProfile(currentUser.fname, currentUser.lname, currentUser.cardNumber);
   logStatus = 'logIn';
   profileWithAuth();
   event.target.reset();
@@ -322,8 +323,6 @@ function createUser() {
   users.push(currentUser);
   console.log('users', users);
   localStorage.setItem('library', JSON.stringify(users));
-  changeProfileIcon(currentUser.fname, currentUser.lname);
-  changeMyProfile(currentUser.fname, currentUser.lname, currentUser.cardNumber);
 }
 
 function isEmailValid(email) {
@@ -425,11 +424,21 @@ function loginCheck(event) {
     pswLoginTooltip.classList.remove('none');
     return;
   }
-  checkUser();
+  if (hasUserLogin()) {
+    currentUser = hasUserLogin();
+    changeProfileIcon(currentUser.fname, currentUser.lname);
+    changeMyProfile(currentUser.fname, currentUser.lname, currentUser.cardNumber);
+    logStatus = 'logIn';
+    profileWithAuth();
+    event.target.reset();
+    closeModalLogin();
+  };
 }
 
-function checkUser() {
-  return;
+function hasUserLogin() {
+  return users.find(function(item){
+    return ((emailLoginInput.value === item.email) && (pswLoginInput.value === item.psw));
+  });
 }
 /*********************
 /LOGIN
@@ -444,9 +453,11 @@ const mypofileCloseBtn = modalMyProfile.querySelector('.js-myprofile-close-btn')
 const mypofileInitials = modalMyProfile.querySelector('.js-initials');
 const mypofileName = modalMyProfile.querySelector('.js-name');
 const mypofileCard = modalMyProfile.querySelector('.js-card');
+const copyBtn = modalMyProfile.querySelector('.js-copy');
 
 mypofileCloseBtn.addEventListener('click', closeModalMyProfile);
 overlay.addEventListener('click', closeModalMyProfile);
+copyBtn.addEventListener('click', copy);
 
 function closeModalMyProfile() {
   modalMyProfile.classList.add('none');
@@ -460,9 +471,19 @@ function changeMyProfile(first, last, card) {
   mypofileName.innerText = `${first} ${last}`;
   mypofileCard.innerText = card;
 }
-
 /*********************
 /MY PROFILE
+*********************/
+
+
+/*********************
+COPY TO CLIPBOARD
+*********************/
+function copy() {
+  navigator.clipboard.writeText(currentUser.cardNumber);
+}
+/*********************
+/COPY TO CLIPBOARD
 *********************/
 
 
@@ -502,8 +523,48 @@ console.log('localStorage', users);
 STATUS
 *********************/
 /* before registration */
+let currentUser;
 let logStatus = 'logOut';
 let hasCard = false;
 /*********************
 /STATUS
+*********************/
+
+
+/*********************
+CHECK THE CARD
+*********************/
+const findCardForm = document.querySelector('.js-find-card-form');
+const checkCardNameInput = findCardForm.querySelector('.js-find-card-name');
+const checkCardNumberInput = findCardForm.querySelector('.js-find-card-number');
+const checkCardBtn = findCardForm.querySelector('.js-check-card-btn');
+const cardStat = findCardForm.querySelector('.js-card-stat');
+
+findCardForm.addEventListener('submit', event => checkCard(event));
+
+function checkCard(event) {
+  event.preventDefault();
+  if (users.length === 0) {
+    console.log('no registered users', users);
+    return;
+  } 
+  if (hasUser()) {
+    checkCardBtn.classList.add('none');
+    cardStat.classList.remove('none');
+    setTimeout(() => {
+      cardStat.classList.add('none');
+      checkCardBtn.classList.remove('none');
+    }, 1000);
+  } else {
+    console.log('no');
+  }
+}
+
+function hasUser() {
+  return users.find(function(item){
+    return ((checkCardNameInput.value === item.fname) && (checkCardNumberInput.value === item.cardNumber));
+  });
+}
+/*********************
+/CHECK THE CARD
 *********************/

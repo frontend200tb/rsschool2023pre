@@ -656,20 +656,49 @@
 				<div class="library__content">
 					<div class="library__find">
 						<div class="library__find-title">Find your Library card</div>
-						<div class="library__find-form">
+
+						<form class="library__find-form js-find-card-form" action="">
 							<div class="library__goldcard">
 								<div class="library__goldcard-title">Brooklyn Public Library</div>
 								<div>
-									<input class="library__goldcard-name" type="text" placeholder="Reader's name ">
+									<input class="library__goldcard-name js-find-card-name" type="text" placeholder="Reader's name ">
 								</div>
+
 								<div>
-									<input class="library__goldcard-number" type="text" placeholder="Card number">
+									<input class="library__goldcard-number js-find-card-number" type="text" placeholder="Card number">
 								</div>
 							</div>
-							<div class="library__goldcard-check">
-								<button class="library__goldcard-btn" type="submit">Check the card</button>
+
+							<div class="library__goldcard-btn-wrapper js-check-card-btn">
+								<button class="library__goldcard-btn" type="submit">Check the card</button>								
 							</div>
-						</div>
+
+							<div class="library__statistics-wrapper js-card-stat none">
+								<div class="library__stat-flex">
+									<div class="card__statistics">
+										<div class="stat__item">
+											<div>Visits</div>
+											<div class="stat__item-icon visits-icon"></div>
+											<div class="stat__item-num">23</div>
+										</div>
+					
+										<div class="stat__item">						
+											<div>Bonuses</div>
+											<div class="stat__item-icon bonuses-icon"></div>
+											<div class="stat__item-num">1240</div>
+										</div>
+					
+										<div class="stat__item">
+											<div>Books</div>
+											<div class="stat__item-icon books-icon"></div>
+											<div class="stat__item-num">2</div>
+										</div>
+									</div>
+								</div>
+							</div>
+			
+						</form>
+						
 					</div>
 
 					<div class="library__get">
@@ -852,7 +881,7 @@
 				<div class="myprofile__card-number">
 					<div class="card-title">Card number</div>
 					<div class="card-number js-card">F00234030</div>
-					<div class="card-icon" title="copy"></div>
+					<div class="card-icon js-copy" title="copy"></div>
 				</div>
 		
 			</div>
