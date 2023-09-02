@@ -16,8 +16,8 @@ navItems.forEach( (elem) => {
 overlay.addEventListener('click', removeNav);
 
 function toggleNav() {
-  if (!profile.classList.contains('none')) {
-    removeProfile();
+  if (!profileMenu.classList.contains('none')) {
+    closeProfile();
   }
   burger.classList.toggle('active');
   nav.classList.toggle('active');
@@ -156,21 +156,40 @@ function radioCheck(i) {
 /*********************
 dropMenu PROFILE
 *********************/
+
+/* Profile button */
 const profileBtn = document.querySelector('.js-profile-icon');
-const profile = document.querySelector('.js-profile');
-const myprofileBtn = document.querySelector('.js-myprofile-btn');
-const logoutBtn = document.querySelector('.js-logout-btn');
+const profileMenu = document.querySelector('.js-profile');
+const profileTitle = document.querySelector('.js-profile-title');
+
+profileBtn.addEventListener('click', toggleProfile);
+
+function toggleProfile() {
+  if (burger.classList.contains('active')) {
+    removeNav();
+  }
+  profileMenu.classList.toggle('none');
+  overlay.classList.toggle('none');
+}
+/* /Profile button */
 
 /* register buttons */
 const registerBtn = document.querySelector('.js-register-btn');
 const libSignupBtn = document.querySelector('.js-lib-signup-btn');
 const loginRegisterBtn = document.querySelector('.js-login-register-btn');
+
 registerBtn.addEventListener('click', openModalRegister);
 libSignupBtn.addEventListener('click', openModalRegister);
 loginRegisterBtn.addEventListener('click', () => {
   closeModalLogin();
   openModalRegister();
 });
+
+function openModalRegister() {
+  closeProfile();
+  modalRegister.classList.remove('none');
+  overlay.classList.remove('none');
+}
 /* /register buttons */
 
 /* login buttons */
@@ -178,6 +197,7 @@ const loginBtn = document.querySelector('.js-login-btn');
 const libLoginBtn = document.querySelector('.js-lib-login-btn');
 const regLoginBtn = document.querySelector('.js-register-login-btn');
 const buyBtn = Array.from(document.querySelectorAll('.js-buy-btn'));
+
 loginBtn.addEventListener('click', openModalLogin);
 libLoginBtn.addEventListener('click', openModalLogin);
 regLoginBtn.addEventListener('click', () => {
@@ -196,40 +216,10 @@ buyBtn.forEach(elem => elem.addEventListener('click', () => {
     return;
   }
 }));
-/* /login buttons */
-
-profileBtn.addEventListener('click', toggleProfile);
-myprofileBtn.addEventListener('click', openModalMyProfile);
-overlay.addEventListener('click', removeProfile);
-
-function toggleProfile() {
-  if (burger.classList.contains('active')) {
-    removeNav();
-  }
-  profile.classList.toggle('none');
-  overlay.classList.toggle('none');
-}
-
-function removeProfile() {
-  profile.classList.add('none');
-  overlay.classList.add('none');
-}
-
-function openModalRegister() {
-  removeProfile();
-  modalRegister.classList.remove('none');
-  overlay.classList.remove('none');
-}
 
 function openModalLogin() {
-  removeProfile();
+  closeProfile();
   modalLogin.classList.remove('none');
-  overlay.classList.remove('none');
-}
-
-function openModalMyProfile() {
-  removeProfile();
-  modalMyProfile.classList.remove('none');
   overlay.classList.remove('none');
 }
 
@@ -237,7 +227,56 @@ function openModalBuyCard() {
   modalBuyCard.classList.remove('none');
   overlay.classList.remove('none');
 }
+/* /login buttons */
 
+/* My profile button */
+const myprofileBtn = document.querySelector('.js-myprofile-btn');
+
+myprofileBtn.addEventListener('click', openModalMyProfile);
+
+function openModalMyProfile() {
+  closeProfile();
+  modalMyProfile.classList.remove('none');
+  overlay.classList.remove('none');
+}
+/* /My profile button */
+
+/* Log Out button */
+const logoutBtn = document.querySelector('.js-logout-btn');
+
+logoutBtn.addEventListener('click', logOut);
+
+function logOut() {
+  logStatus = 'logOut';
+  hasCard = false;
+  console.log('log out');
+  defaultProfileIcon();
+  profileNoAuth();
+  closeProfile();
+}
+
+function defaultProfileIcon() {
+  profileBtn.classList.add('profile-icon-default');
+  profileBtn.innerText = '';
+  profileBtn.removeAttribute('title');
+}
+
+function profileNoAuth() {
+  loginBtn.classList.remove('none');
+  registerBtn.classList.remove('none');
+  myprofileBtn.classList.add('none');
+  logoutBtn.classList.add('none');
+  profileTitle.innerText = 'Profile';
+  profileTitle.style.fontSize = '15px';
+}
+/* /Log Out button */
+
+overlay.addEventListener('click', closeProfile);
+
+function closeProfile() {
+  profileMenu.classList.add('none');
+  overlay.classList.add('none');
+}
 /*********************
 /dropMenu PROFILE
 *********************/
@@ -276,6 +315,7 @@ pswRegisterInput.addEventListener('change', () => {
 });
 
 function closeModalRegister() {
+  registerForm.reset(); //очистка формы
   modalRegister.classList.add('none');
   overlay.classList.add('none');
 }
@@ -304,7 +344,6 @@ function registerCheck(event) {
   changeMyProfile(currentUser.fname, currentUser.lname, currentUser.cardNumber);
   logStatus = 'logIn';
   profileWithAuth();
-  event.target.reset();
   closeModalRegister();
 }
 
@@ -381,6 +420,8 @@ function profileWithAuth() {
   registerBtn.classList.add('none');
   myprofileBtn.classList.remove('none');
   logoutBtn.classList.remove('none');
+  profileTitle.innerText = currentUser.cardNumber;
+  profileTitle.style.fontSize = '12px';
 }
 /*********************
 /REGISTER
@@ -409,6 +450,7 @@ pswLoginInput.addEventListener('change', () => {
 });
 
 function closeModalLogin() {
+  loginForm.reset(); //очистка формы
   modalLogin.classList.add('none');
   overlay.classList.add('none');
 }
@@ -430,7 +472,6 @@ function loginCheck(event) {
     changeMyProfile(currentUser.fname, currentUser.lname, currentUser.cardNumber);
     logStatus = 'logIn';
     profileWithAuth();
-    event.target.reset();
     closeModalLogin();
   };
 }
@@ -554,6 +595,7 @@ function checkCard(event) {
     setTimeout(() => {
       cardStat.classList.add('none');
       checkCardBtn.classList.remove('none');
+      findCardForm.reset();
     }, 1000);
   } else {
     console.log('no');
@@ -568,3 +610,18 @@ function hasUser() {
 /*********************
 /CHECK THE CARD
 *********************/
+
+/*
+осталось сделать
+- отображается панель с информацией, вместо кнопки check the card на 10 секунд (у меня сделана 1 секунда)
+- каждая авторизация будет влиять на счетчик визитов
+- возможность купить абонемент, отображение информации в Digital Library Cards.
+- Окно регистрации, логин, профиль и покупки абонемента центрировано, а область вокруг затемнена (надо затемнить кнопку профиля и кнопку бургер меню)
+- В случае если имя и фамилия слишком длинные и не влазят в блок то должен произойти перенос фамилии на следующую строку
+- Счетчик для Visits отображает, сколько раз пользователь проходил процесс авторизации, включая самый первый - регистрацию
+- Счетчик для Books отображает, сколько у пользователя книг находятся в состоянии Own. Значение варьируется 0-16
+- При нажатии на любую кнопку Buy, после покупки абонемента, меняет вид кнопки на неактивную Own, добавляя единицу к счетчику книг в профиле
+- Кроме того после нажатия обновляется не только счетчик, но и название книги должно отобразится в разделе Rented Books. Название формируется по принципу <название книги>, <автор книги>. В случае если название книги слишком длинное или список стал слишком большой список книг в блоке Rented Books становится скроллируемым (по необходимости горизонтально/ вертикально или оба скролла сразу) Тайтл Rented Books скроллироваться не должен
+- Модальное окно BUY A LIBRARY CARD
+
+*/

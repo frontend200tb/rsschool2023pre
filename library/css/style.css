@@ -203,8 +203,9 @@ header__icons
 }
 
 .profile__title {
-  margin: 5px 16px;
+  margin-top: 5px;
   font-weight: 700;
+  text-align: center;
 }
 
 .profile__hr {
