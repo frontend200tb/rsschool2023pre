@@ -1720,7 +1720,9 @@ MODAL MY PROFILE
 /* my profile rented books */
 .myprofile__books {
   margin-top: 20px;
-  height: 100px;
+  width: 400px;
+  height: 140px;
+  overflow: auto;
 }
 
 .books-title {
@@ -1756,7 +1758,6 @@ MODAL MY PROFILE
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 40px;
   width: 280.31px;
   height: 20px;
 }

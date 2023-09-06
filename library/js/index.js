@@ -196,7 +196,11 @@ function openModalRegister() {
 const loginBtn = document.querySelector('.js-login-btn');
 const libLoginBtn = document.querySelector('.js-lib-login-btn');
 const regLoginBtn = document.querySelector('.js-register-login-btn');
-const buyBtn = Array.from(document.querySelectorAll('.js-buy-btn'));
+
+// 16 кнопок buy
+const buyBtns = Array.from(document.querySelectorAll('.js-buy-btn'));
+// забираем все кнопки buy в массив (от 0 до 15)
+// каждой кнопке соответствует своя книга
 
 loginBtn.addEventListener('click', openModalLogin);
 libLoginBtn.addEventListener('click', openModalLogin);
@@ -204,17 +208,22 @@ regLoginBtn.addEventListener('click', () => {
   closeModalRegister();
   openModalLogin();
 });
-buyBtn.forEach(elem => elem.addEventListener('click', () => {
+buyBtns.forEach(elem => elem.addEventListener('click', (event) => {
+  // если пользователь не вошел в аккаунт,
+  // открываем модальное окно Login
   if (logStatus === 'logOut') {
-    console.log('logStatus', logStatus);
     openModalLogin();
     return;
-  } else if (logStatus === 'logIn' && !hasCard) {
-    console.log('logStatus', logStatus, 'hasCard', hasCard);
+  // если пользователь вошел в аккаунт, но не купил карту,
+  // открываем модальное окно Buy a library card
+  } else if (logStatus === 'logIn' && !currentUser.hasCard) {
+    console.log('logStatus', logStatus, 'hasCard', currentUser.hasCard);
     openModalBuyCard();
-    return;
+  // если пользователь вошел в аккаунт и у него есть карта,
+  // добавляем книгу в Rented books
   } else {
-    console.log('logStatus', logStatus, 'hasCard', hasCard);
+    rentBook(event);
+    return;
   }
 }));
 
@@ -228,6 +237,25 @@ function openModalBuyCard() {
   modalBuyCard.classList.remove('none');
   overlay.classList.remove('none');
 }
+
+function rentBook(event) {
+  // при каждой покупке увеличивается количество взятых книг
+  currentUser.bookCounter++;
+  // добавляем взятую книгу в массив Rented books
+  let bookId = event.target.getAttribute('data-book-id');
+  currentUser.rentedBooks.push(books[bookId]);
+  // записываем в local storage массив юзеров
+  localStorage.setItem('library', JSON.stringify(users));
+  // кнопка buy меняется на own и становится неактивная
+  event.target.innerText = 'Own';
+  event.target.classList.add('own');
+  // обновляем данные в модальном окне My Profile
+  changeMyProfile();
+  // обновляем данные в Check the card
+  changeCheckCard();
+  // обновляем информацию Rented Books на странице
+}
+
 /* /login buttons */
 
 /* My profile button */
@@ -253,6 +281,8 @@ function logOut() {
   console.log('log out');
   defaultProfileIcon();
   profileNoAuth();
+  // кнопки Buy в начальное состояние
+  defaultBuyBtns();
   closeProfile();
 }
 
@@ -341,26 +371,30 @@ function registerCheck(event) {
     return;
   }
   createUser();
+  // иконку профиля меняем на инициалы юзера
   changeProfileIcon(currentUser.fname, currentUser.lname);
-  changeMyProfile(currentUser.fname, currentUser.lname, currentUser.cardNumber);
+  // обновляем данные в модальном окне My Profile
+  changeMyProfile();
+  // обновляем данные в Check the card
+  changeCheckCard();
   logStatus = 'logIn';
   profileWithAuth();
   closeModalRegister();
 }
 
 function createUser() {
-  console.log('First name', fnameRegisterInput.value);
-  console.log('Last name', lnameRegisterInput.value);
-  console.log('E-mail', emailRegisterInput.value);
-  console.log('Password', pswRegisterInput.value);
   currentUser = { 
     fname : fnameRegisterInput.value.trim(),
     lname : lnameRegisterInput.value.trim(),
     email : emailRegisterInput.value.trim(),
     psw : pswRegisterInput.value.trim(),
+    cardNumber : createCardNumber(),
+    visitCounter : 1,
+    hasCard : false,
+    bookCounter : 0,
+    rentedBooks : [],
   }
-  currentUser.cardNumber = createCardNumber();
-  currentUser.visitCounter = 1;
+  console.log('currentUser', currentUser);
   users.push(currentUser);
   console.log('users', users);
   localStorage.setItem('library', JSON.stringify(users));
@@ -470,10 +504,18 @@ function loginCheck(event) {
   }
   if (hasUserLogin()) {
     currentUser = hasUserLogin();
+    // при каждом логине увеличиваем счетчик посещений
     currentUser.visitCounter++;
+    // записываем в local storage массив юзеров
     localStorage.setItem('library', JSON.stringify(users));
+    // иконку профиля меняем на инициалы юзера
     changeProfileIcon(currentUser.fname, currentUser.lname);
+    // обновляем данные в модальном окне My Profile
     changeMyProfile();
+    // обновляем данные в Check the card
+    changeCheckCard();
+    // обновляем кнопки Buy
+    changeBuyBtns();
     logStatus = 'logIn';
     profileWithAuth();
     closeModalLogin();
@@ -485,8 +527,46 @@ function hasUserLogin() {
     return ((emailLoginInput.value === item.email) && (pswLoginInput.value === item.psw));
   });
 }
+
+function changeBuyBtns() {
+  currentUser.rentedBooks.forEach(book => {
+    buyBtns[book.id].innerText = 'Own';
+    buyBtns[book.id].classList.add('own');
+  })
+}
+
 /*********************
 /LOGIN
+*********************/
+
+
+/*********************
+LOG OUT
+*********************/
+function defaultBuyBtns() {
+  buyBtns.forEach(elem => {
+      elem.innerText = 'Buy';
+      elem.classList.remove('own');
+  })
+}
+
+/*********************
+/LOG OUT
+*********************/
+
+
+/*********************
+CHECK THE CARD
+*********************/
+const checkCardVisits = document.querySelector('.js-stat-visits');
+const checkCardBooks = document.querySelector('.js-stat-books');
+
+function changeCheckCard() {
+  checkCardVisits.innerText = currentUser.visitCounter;
+  checkCardBooks.innerText = currentUser.bookCounter;
+}
+/*********************
+/CHECK THE CARD
 *********************/
 
 
@@ -498,6 +578,8 @@ const mypofileCloseBtn = modalMyProfile.querySelector('.js-myprofile-close-btn')
 const mypofileInitials = modalMyProfile.querySelector('.js-myprofile-initials');
 const mypofileName = modalMyProfile.querySelector('.js-myprofile-name');
 const mypofileVisits = modalMyProfile.querySelector('.js-myprofile-visits');
+const mypofileBooks = modalMyProfile.querySelector('.js-myprofile-books');
+const mypofileRentedBooks = modalMyProfile.querySelector('.js-rented-books');
 const mypofileCard = modalMyProfile.querySelector('.js-card');
 const copyBtn = modalMyProfile.querySelector('.js-copy');
 
@@ -516,7 +598,17 @@ function changeMyProfile() {
   mypofileInitials.innerText = firstLetter + secondLetter;
   mypofileName.innerText = `${currentUser.fname} ${currentUser.lname}`;
   mypofileVisits.innerText = currentUser.visitCounter;
+  mypofileBooks.innerText = currentUser.bookCounter;
   mypofileCard.innerText = currentUser.cardNumber;
+  let liElements = [];
+  currentUser.rentedBooks.forEach((book) => {
+    let li = document.createElement('li');
+    li.classList.add('books-list-item');
+    li.innerText = `${book.name}, ${book.author}`;
+    liElements.push(li);
+  })
+  mypofileRentedBooks.innerHTML = '';
+  mypofileRentedBooks.append(...liElements);
 }
 /*********************
 /MY PROFILE
@@ -589,17 +681,18 @@ function closeModalBuyCard() {
 }
 
 const buyCardForm = document.querySelector('.js-buy-card-form');
-const buyCardBtn = document.querySelector('.js-buy-card-btn');
+const buyCardBtn = buyCardForm.querySelector('.js-buy-card-btn');
 
 buyCardForm.addEventListener('submit', event => buyCard(event));
 
 function buyCard(event) {
   event.preventDefault();
-  if (hasCard === true) {
+  if (currentUser.hasCard === true) {
     console.log('already has a card');
     return;
   } 
-  hasCard = true;
+  currentUser.hasCard = true;
+  localStorage.setItem('library', JSON.stringify(users));
   closeModalBuyCard();
 }
 
@@ -627,23 +720,136 @@ STATUS
 /* before registration */
 let currentUser;
 let logStatus = 'logOut';
-let hasCard = false;
-let visitCounter;
 /*********************
 /STATUS
 *********************/
 
 
+/*********************
+BOOKS
+*********************/
+const books = [
+  {
+    id: 0,
+    season: 'winter',
+    name: 'The Book Eaters',
+    author: 'Sunyi Dean',
+  },
+
+  {
+    id: 1,
+    season: 'winter',
+    name: 'Cackle',
+    author: 'Rachel Harrison',
+  },
+
+  {
+    id: 2,
+    season: 'winter',
+    name: 'Dante: Poet of the Secular World',
+    author: 'Erich Auerbach',
+  },
+
+  {
+    id: 3,
+    season: 'winter',
+    name: 'The Last Queen',
+    author: 'Clive Irving',
+  },
+
+  {
+    id: 4,
+    season: 'spring',
+    name: 'The Body',
+    author: 'Stephen King',
+  },
+
+  {
+    id: 5,
+    season: 'spring',
+    name: 'Carry: A Memoir of Survival on Stolen Land',
+    author: 'Toni Jenson',
+  },
+
+  {
+    id: 6,
+    season: 'spring',
+    name: 'Days of Distraction',
+    author: 'Alexandra Chang',
+  },
+
+  {
+    id: 7,
+    season: 'spring',
+    name: 'Dominicana',
+    author: 'Angie Cruz',
+  },
+
+  {
+    id: 8,
+    season: 'summer',
+    name: 'Crude: A Memoir',
+    author: 'Pablo Fajardo & ​​Sophie Tardy-Joubert',
+  },
+
+  {
+    id: 9,
+    season: 'summer',
+    name: 'Let My People Go Surfing',
+    author: 'Yvon Chouinard',
+  },
+
+  {
+    id: 10,
+    season: 'summer',
+    name: 'The Octopus Museum: Poems',
+    author: 'Brenda Shaughnessy',
+  },
+
+  {
+    id: 11,
+    season: 'summer',
+    name: 'Shark Dialogues: A Novel',
+    author: 'Kiana Davenport',
+  },
+
+  {
+    id: 12,
+    season: 'autumn',
+    name: 'Casual Conversation',
+    author: 'Renia White',
+  },
+
+  {
+    id: 13,
+    season: 'autumn',
+    name: 'The Great Fire',
+    author: 'Lou Ureneck',
+  },
+
+  {
+    id: 14,
+    season: 'autumn',
+    name: 'Rickey: The Life and Legend',
+    author: 'Howard Bryant',
+  },
+
+  {
+    id: 15,
+    season: 'autumn',
+    name: 'Slug: And Other Stories',
+    author: 'Megan Milks',
+  },
+]
+/*********************
+/BOOKS
+*********************/
+
 /*
 осталось сделать
 - отображается панель с информацией, вместо кнопки check the card на 10 секунд (у меня сделана 1 секунда)
-- каждая авторизация будет влиять на счетчик визитов
-- возможность купить абонемент, отображение информации в Digital Library Cards.
 - Окно регистрации, логин, профиль и покупки абонемента центрировано, а область вокруг затемнена (надо затемнить кнопку профиля и кнопку бургер меню)
 - В случае если имя и фамилия слишком длинные и не влазят в блок то должен произойти перенос фамилии на следующую строку
-- Счетчик для Visits отображает, сколько раз пользователь проходил процесс авторизации, включая самый первый - регистрацию
-- Счетчик для Books отображает, сколько у пользователя книг находятся в состоянии Own. Значение варьируется 0-16
-- При нажатии на любую кнопку Buy, после покупки абонемента, меняет вид кнопки на неактивную Own, добавляя единицу к счетчику книг в профиле
 - Кроме того после нажатия обновляется не только счетчик, но и название книги должно отобразится в разделе Rented Books. Название формируется по принципу <название книги>, <автор книги>. В случае если название книги слишком длинное или список стал слишком большой список книг в блоке Rented Books становится скроллируемым (по необходимости горизонтально/ вертикально или оба скролла сразу) Тайтл Rented Books скроллироваться не должен
 - Модальное окно BUY A LIBRARY CARD
 
