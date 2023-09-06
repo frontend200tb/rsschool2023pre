@@ -16,8 +16,8 @@ navItems.forEach( (elem) => {
 overlay.addEventListener('click', removeNav);
 
 function toggleNav() {
-  if (!profile.classList.contains('none')) {
-    removeProfile();
+  if (!profileMenu.classList.contains('none')) {
+    closeProfile();
   }
   burger.classList.toggle('active');
   nav.classList.toggle('active');
@@ -156,80 +156,80 @@ function radioCheck(i) {
 /*********************
 dropMenu PROFILE
 *********************/
+
+/* Profile button */
 const profileBtn = document.querySelector('.js-profile-icon');
-const profile = document.querySelector('.js-profile');
-const myprofileBtn = document.querySelector('.js-myprofile-btn');
-const logoutBtn = document.querySelector('.js-logout-btn');
+const profileMenu = document.querySelector('.js-profile');
+const profileTitle = document.querySelector('.js-profile-title');
+
+profileBtn.addEventListener('click', toggleProfile);
+
+function toggleProfile() {
+  if (burger.classList.contains('active')) {
+    removeNav();
+  }
+  profileMenu.classList.toggle('none');
+  overlay.classList.toggle('none');
+}
+/* /Profile button */
 
 /* register buttons */
 const registerBtn = document.querySelector('.js-register-btn');
 const libSignupBtn = document.querySelector('.js-lib-signup-btn');
 const loginRegisterBtn = document.querySelector('.js-login-register-btn');
+
 registerBtn.addEventListener('click', openModalRegister);
 libSignupBtn.addEventListener('click', openModalRegister);
 loginRegisterBtn.addEventListener('click', () => {
   closeModalLogin();
   openModalRegister();
 });
+
+function openModalRegister() {
+  closeProfile();
+  modalRegister.classList.remove('none');
+  overlay.classList.remove('none');
+}
 /* /register buttons */
 
 /* login buttons */
 const loginBtn = document.querySelector('.js-login-btn');
 const libLoginBtn = document.querySelector('.js-lib-login-btn');
 const regLoginBtn = document.querySelector('.js-register-login-btn');
-const buyBtn = Array.from(document.querySelectorAll('.js-buy-btn'));
+
+// 16 кнопок buy
+const buyBtns = Array.from(document.querySelectorAll('.js-buy-btn'));
+// забираем все кнопки buy в массив (от 0 до 15)
+// каждой кнопке соответствует своя книга
+
 loginBtn.addEventListener('click', openModalLogin);
 libLoginBtn.addEventListener('click', openModalLogin);
 regLoginBtn.addEventListener('click', () => {
   closeModalRegister();
   openModalLogin();
 });
-buyBtn.forEach(elem => elem.addEventListener('click', () => {
+buyBtns.forEach(elem => elem.addEventListener('click', (event) => {
+  // если пользователь не вошел в аккаунт,
+  // открываем модальное окно Login
   if (logStatus === 'logOut') {
-    console.log('logStatus', logStatus, 'hasCard', hasCard);
     openModalLogin();
     return;
-  }
-  if (logStatus === 'logIn' && !hasCard) {
-    console.log('logStatus', logStatus, 'hasCard', hasCard);
+  // если пользователь вошел в аккаунт, но не купил карту,
+  // открываем модальное окно Buy a library card
+  } else if (logStatus === 'logIn' && !currentUser.hasCard) {
+    console.log('logStatus', logStatus, 'hasCard', currentUser.hasCard);
     openModalBuyCard();
+  // если пользователь вошел в аккаунт и у него есть карта,
+  // добавляем книгу в Rented books
+  } else {
+    rentBook(event);
     return;
   }
 }));
-/* /login buttons */
-
-profileBtn.addEventListener('click', toggleProfile);
-myprofileBtn.addEventListener('click', openModalMyProfile);
-overlay.addEventListener('click', removeProfile);
-
-function toggleProfile() {
-  if (burger.classList.contains('active')) {
-    removeNav();
-  }
-  profile.classList.toggle('none');
-  overlay.classList.toggle('none');
-}
-
-function removeProfile() {
-  profile.classList.add('none');
-  overlay.classList.add('none');
-}
-
-function openModalRegister() {
-  removeProfile();
-  modalRegister.classList.remove('none');
-  overlay.classList.remove('none');
-}
 
 function openModalLogin() {
-  removeProfile();
+  closeProfile();
   modalLogin.classList.remove('none');
-  overlay.classList.remove('none');
-}
-
-function openModalMyProfile() {
-  removeProfile();
-  modalMyProfile.classList.remove('none');
   overlay.classList.remove('none');
 }
 
@@ -238,6 +238,76 @@ function openModalBuyCard() {
   overlay.classList.remove('none');
 }
 
+function rentBook(event) {
+  // при каждой покупке увеличивается количество взятых книг
+  currentUser.bookCounter++;
+  // добавляем взятую книгу в массив Rented books
+  let bookId = event.target.getAttribute('data-book-id');
+  currentUser.rentedBooks.push(books[bookId]);
+  // записываем в local storage массив юзеров
+  localStorage.setItem('library', JSON.stringify(users));
+  // кнопка buy меняется на own и становится неактивная
+  event.target.innerText = 'Own';
+  event.target.classList.add('own');
+  // обновляем данные в модальном окне My Profile
+  changeMyProfile();
+  // обновляем данные в Check the card
+  changeCheckCard();
+  // обновляем информацию Rented Books на странице
+}
+
+/* /login buttons */
+
+/* My profile button */
+const myprofileBtn = document.querySelector('.js-myprofile-btn');
+
+myprofileBtn.addEventListener('click', openModalMyProfile);
+
+function openModalMyProfile() {
+  closeProfile();
+  modalMyProfile.classList.remove('none');
+  overlay.classList.remove('none');
+}
+/* /My profile button */
+
+/* Log Out button */
+const logoutBtn = document.querySelector('.js-logout-btn');
+
+logoutBtn.addEventListener('click', logOut);
+
+function logOut() {
+  logStatus = 'logOut';
+  hasCard = false;
+  console.log('log out');
+  defaultProfileIcon();
+  profileNoAuth();
+  // кнопки Buy в начальное состояние
+  defaultBuyBtns();
+  closeProfile();
+}
+
+function defaultProfileIcon() {
+  profileBtn.classList.add('profile-icon-default');
+  profileBtn.innerText = '';
+  profileBtn.removeAttribute('title');
+}
+
+function profileNoAuth() {
+  loginBtn.classList.remove('none');
+  registerBtn.classList.remove('none');
+  myprofileBtn.classList.add('none');
+  logoutBtn.classList.add('none');
+  profileTitle.innerText = 'Profile';
+  profileTitle.style.fontSize = '15px';
+}
+/* /Log Out button */
+
+overlay.addEventListener('click', closeProfile);
+
+function closeProfile() {
+  profileMenu.classList.add('none');
+  overlay.classList.add('none');
+}
 /*********************
 /dropMenu PROFILE
 *********************/
@@ -276,6 +346,7 @@ pswRegisterInput.addEventListener('change', () => {
 });
 
 function closeModalRegister() {
+  registerForm.reset(); //очистка формы
   modalRegister.classList.add('none');
   overlay.classList.add('none');
 }
@@ -300,26 +371,30 @@ function registerCheck(event) {
     return;
   }
   createUser();
+  // иконку профиля меняем на инициалы юзера
   changeProfileIcon(currentUser.fname, currentUser.lname);
-  changeMyProfile(currentUser.fname, currentUser.lname, currentUser.cardNumber);
+  // обновляем данные в модальном окне My Profile
+  changeMyProfile();
+  // обновляем данные в Check the card
+  changeCheckCard();
   logStatus = 'logIn';
   profileWithAuth();
-  event.target.reset();
   closeModalRegister();
 }
 
 function createUser() {
-  console.log('First name', fnameRegisterInput.value);
-  console.log('Last name', lnameRegisterInput.value);
-  console.log('E-mail', emailRegisterInput.value);
-  console.log('Password', pswRegisterInput.value);
   currentUser = { 
     fname : fnameRegisterInput.value.trim(),
     lname : lnameRegisterInput.value.trim(),
     email : emailRegisterInput.value.trim(),
     psw : pswRegisterInput.value.trim(),
+    cardNumber : createCardNumber(),
+    visitCounter : 1,
+    hasCard : false,
+    bookCounter : 0,
+    rentedBooks : [],
   }
-  currentUser.cardNumber = createCardNumber();
+  console.log('currentUser', currentUser);
   users.push(currentUser);
   console.log('users', users);
   localStorage.setItem('library', JSON.stringify(users));
@@ -381,6 +456,8 @@ function profileWithAuth() {
   registerBtn.classList.add('none');
   myprofileBtn.classList.remove('none');
   logoutBtn.classList.remove('none');
+  profileTitle.innerText = currentUser.cardNumber;
+  profileTitle.style.fontSize = '12px';
 }
 /*********************
 /REGISTER
@@ -409,6 +486,7 @@ pswLoginInput.addEventListener('change', () => {
 });
 
 function closeModalLogin() {
+  loginForm.reset(); //очистка формы
   modalLogin.classList.add('none');
   overlay.classList.add('none');
 }
@@ -426,11 +504,20 @@ function loginCheck(event) {
   }
   if (hasUserLogin()) {
     currentUser = hasUserLogin();
+    // при каждом логине увеличиваем счетчик посещений
+    currentUser.visitCounter++;
+    // записываем в local storage массив юзеров
+    localStorage.setItem('library', JSON.stringify(users));
+    // иконку профиля меняем на инициалы юзера
     changeProfileIcon(currentUser.fname, currentUser.lname);
-    changeMyProfile(currentUser.fname, currentUser.lname, currentUser.cardNumber);
+    // обновляем данные в модальном окне My Profile
+    changeMyProfile();
+    // обновляем данные в Check the card
+    changeCheckCard();
+    // обновляем кнопки Buy
+    changeBuyBtns();
     logStatus = 'logIn';
     profileWithAuth();
-    event.target.reset();
     closeModalLogin();
   };
 }
@@ -440,8 +527,46 @@ function hasUserLogin() {
     return ((emailLoginInput.value === item.email) && (pswLoginInput.value === item.psw));
   });
 }
+
+function changeBuyBtns() {
+  currentUser.rentedBooks.forEach(book => {
+    buyBtns[book.id].innerText = 'Own';
+    buyBtns[book.id].classList.add('own');
+  })
+}
+
 /*********************
 /LOGIN
+*********************/
+
+
+/*********************
+LOG OUT
+*********************/
+function defaultBuyBtns() {
+  buyBtns.forEach(elem => {
+      elem.innerText = 'Buy';
+      elem.classList.remove('own');
+  })
+}
+
+/*********************
+/LOG OUT
+*********************/
+
+
+/*********************
+CHECK THE CARD
+*********************/
+const checkCardVisits = document.querySelector('.js-stat-visits');
+const checkCardBooks = document.querySelector('.js-stat-books');
+
+function changeCheckCard() {
+  checkCardVisits.innerText = currentUser.visitCounter;
+  checkCardBooks.innerText = currentUser.bookCounter;
+}
+/*********************
+/CHECK THE CARD
 *********************/
 
 
@@ -450,8 +575,11 @@ MY PROFILE
 *********************/
 const modalMyProfile = document.querySelector('.js-modal-myprofile');
 const mypofileCloseBtn = modalMyProfile.querySelector('.js-myprofile-close-btn');
-const mypofileInitials = modalMyProfile.querySelector('.js-initials');
-const mypofileName = modalMyProfile.querySelector('.js-name');
+const mypofileInitials = modalMyProfile.querySelector('.js-myprofile-initials');
+const mypofileName = modalMyProfile.querySelector('.js-myprofile-name');
+const mypofileVisits = modalMyProfile.querySelector('.js-myprofile-visits');
+const mypofileBooks = modalMyProfile.querySelector('.js-myprofile-books');
+const mypofileRentedBooks = modalMyProfile.querySelector('.js-rented-books');
 const mypofileCard = modalMyProfile.querySelector('.js-card');
 const copyBtn = modalMyProfile.querySelector('.js-copy');
 
@@ -464,12 +592,23 @@ function closeModalMyProfile() {
   overlay.classList.add('none');
 }
 
-function changeMyProfile(first, last, card) {
-  let firstLetter = first.charAt(0).toUpperCase();
-  let secondLetter = last.charAt(0).toUpperCase();
+function changeMyProfile() {
+  let firstLetter = currentUser.fname.charAt(0).toUpperCase();
+  let secondLetter = currentUser.lname.charAt(0).toUpperCase();
   mypofileInitials.innerText = firstLetter + secondLetter;
-  mypofileName.innerText = `${first} ${last}`;
-  mypofileCard.innerText = card;
+  mypofileName.innerText = `${currentUser.fname} ${currentUser.lname}`;
+  mypofileVisits.innerText = currentUser.visitCounter;
+  mypofileBooks.innerText = currentUser.bookCounter;
+  mypofileCard.innerText = currentUser.cardNumber;
+  let liElements = [];
+  currentUser.rentedBooks.forEach((book) => {
+    let li = document.createElement('li');
+    li.classList.add('books-list-item');
+    li.innerText = `${book.name}, ${book.author}`;
+    liElements.push(li);
+  })
+  mypofileRentedBooks.innerHTML = '';
+  mypofileRentedBooks.append(...liElements);
 }
 /*********************
 /MY PROFILE
@@ -484,50 +623,6 @@ function copy() {
 }
 /*********************
 /COPY TO CLIPBOARD
-*********************/
-
-
-/*********************
-BUY A LIBRARY CARD
-*********************/
-const modalBuyCard = document.querySelector('.js-modal__buy-card');
-const buyCardCloseBtn = modalBuyCard.querySelector('.js-buy-card-close-btn');
-
-buyCardCloseBtn.addEventListener('click', closeModalBuyCard);
-overlay.addEventListener('click', closeModalBuyCard);
-
-function closeModalBuyCard() {
-  modalBuyCard.classList.add('none');
-  overlay.classList.add('none');
-}
-/*********************
-/BUY A LIBRARY CARD
-*********************/
-
-
-/*********************
-LOCAL STORAGE
-*********************/
-let users = JSON.parse(localStorage.getItem('library'));
-if (!users) {
-  users = [];
-}
-console.log('localStorage', users);
-
-/*********************
-/LOCAL STORAGE
-*********************/
-
-
-/*********************
-STATUS
-*********************/
-/* before registration */
-let currentUser;
-let logStatus = 'logOut';
-let hasCard = false;
-/*********************
-/STATUS
 *********************/
 
 
@@ -554,7 +649,8 @@ function checkCard(event) {
     setTimeout(() => {
       cardStat.classList.add('none');
       checkCardBtn.classList.remove('none');
-    }, 1000);
+      findCardForm.reset();
+    }, 10000);
   } else {
     console.log('no');
   }
@@ -568,3 +664,191 @@ function hasUser() {
 /*********************
 /CHECK THE CARD
 *********************/
+
+
+/*********************
+BUY A LIBRARY CARD
+*********************/
+const modalBuyCard = document.querySelector('.js-modal__buy-card');
+const buyCardCloseBtn = modalBuyCard.querySelector('.js-buy-card-close-btn');
+
+buyCardCloseBtn.addEventListener('click', closeModalBuyCard);
+overlay.addEventListener('click', closeModalBuyCard);
+
+function closeModalBuyCard() {
+  modalBuyCard.classList.add('none');
+  overlay.classList.add('none');
+}
+
+const buyCardForm = document.querySelector('.js-buy-card-form');
+const buyCardBtn = buyCardForm.querySelector('.js-buy-card-btn');
+
+buyCardForm.addEventListener('submit', event => buyCard(event));
+
+function buyCard(event) {
+  event.preventDefault();
+  if (currentUser.hasCard === true) {
+    console.log('already has a card');
+    return;
+  } 
+  currentUser.hasCard = true;
+  localStorage.setItem('library', JSON.stringify(users));
+  closeModalBuyCard();
+}
+
+/*********************
+/BUY A LIBRARY CARD
+*********************/
+
+/*********************
+LOCAL STORAGE
+*********************/
+let users = JSON.parse(localStorage.getItem('library'));
+if (!users) {
+  users = [];
+}
+console.log('localStorage', users);
+
+/*********************
+/LOCAL STORAGE
+*********************/
+
+
+/*********************
+STATUS
+*********************/
+/* before registration */
+let currentUser;
+let logStatus = 'logOut';
+/*********************
+/STATUS
+*********************/
+
+
+/*********************
+BOOKS
+*********************/
+const books = [
+  {
+    id: 0,
+    season: 'winter',
+    name: 'The Book Eaters',
+    author: 'Sunyi Dean',
+  },
+
+  {
+    id: 1,
+    season: 'winter',
+    name: 'Cackle',
+    author: 'Rachel Harrison',
+  },
+
+  {
+    id: 2,
+    season: 'winter',
+    name: 'Dante: Poet of the Secular World',
+    author: 'Erich Auerbach',
+  },
+
+  {
+    id: 3,
+    season: 'winter',
+    name: 'The Last Queen',
+    author: 'Clive Irving',
+  },
+
+  {
+    id: 4,
+    season: 'spring',
+    name: 'The Body',
+    author: 'Stephen King',
+  },
+
+  {
+    id: 5,
+    season: 'spring',
+    name: 'Carry: A Memoir of Survival on Stolen Land',
+    author: 'Toni Jenson',
+  },
+
+  {
+    id: 6,
+    season: 'spring',
+    name: 'Days of Distraction',
+    author: 'Alexandra Chang',
+  },
+
+  {
+    id: 7,
+    season: 'spring',
+    name: 'Dominicana',
+    author: 'Angie Cruz',
+  },
+
+  {
+    id: 8,
+    season: 'summer',
+    name: 'Crude: A Memoir',
+    author: 'Pablo Fajardo & ​​Sophie Tardy-Joubert',
+  },
+
+  {
+    id: 9,
+    season: 'summer',
+    name: 'Let My People Go Surfing',
+    author: 'Yvon Chouinard',
+  },
+
+  {
+    id: 10,
+    season: 'summer',
+    name: 'The Octopus Museum: Poems',
+    author: 'Brenda Shaughnessy',
+  },
+
+  {
+    id: 11,
+    season: 'summer',
+    name: 'Shark Dialogues: A Novel',
+    author: 'Kiana Davenport',
+  },
+
+  {
+    id: 12,
+    season: 'autumn',
+    name: 'Casual Conversation',
+    author: 'Renia White',
+  },
+
+  {
+    id: 13,
+    season: 'autumn',
+    name: 'The Great Fire',
+    author: 'Lou Ureneck',
+  },
+
+  {
+    id: 14,
+    season: 'autumn',
+    name: 'Rickey: The Life and Legend',
+    author: 'Howard Bryant',
+  },
+
+  {
+    id: 15,
+    season: 'autumn',
+    name: 'Slug: And Other Stories',
+    author: 'Megan Milks',
+  },
+]
+/*********************
+/BOOKS
+*********************/
+
+/*
+осталось сделать
+- Окно регистрации, логин, профиль и покупки абонемента центрировано, а область вокруг затемнена (надо затемнить кнопку профиля и кнопку бургер меню)
+- В случае если имя и фамилия слишком длинные и не влазят в блок то должен произойти перенос фамилии на следующую строку
+- Модальное окно BUY A LIBRARY CARD
+
+*/
