@@ -189,6 +189,7 @@ function openModalRegister() {
   closeProfile();
   modalRegister.classList.remove('none');
   overlay.classList.remove('none');
+  overlay.classList.add('overlay-for-modal');
 }
 /* /register buttons */
 
@@ -231,11 +232,13 @@ function openModalLogin() {
   closeProfile();
   modalLogin.classList.remove('none');
   overlay.classList.remove('none');
+  overlay.classList.add('overlay-for-modal');
 }
 
 function openModalBuyCard() {
   modalBuyCard.classList.remove('none');
   overlay.classList.remove('none');
+  overlay.classList.add('overlay-for-modal');
 }
 
 function rentBook(event) {
@@ -267,6 +270,7 @@ function openModalMyProfile() {
   closeProfile();
   modalMyProfile.classList.remove('none');
   overlay.classList.remove('none');
+  overlay.classList.add('overlay-for-modal');
 }
 /* /My profile button */
 
@@ -349,6 +353,7 @@ function closeModalRegister() {
   registerForm.reset(); //очистка формы
   modalRegister.classList.add('none');
   overlay.classList.add('none');
+  overlay.classList.remove('overlay-for-modal');
 }
 
 function registerCheck(event) {
@@ -489,6 +494,7 @@ function closeModalLogin() {
   loginForm.reset(); //очистка формы
   modalLogin.classList.add('none');
   overlay.classList.add('none');
+  overlay.classList.remove('overlay-for-modal');
 }
 
 function loginCheck(event) {
@@ -590,6 +596,7 @@ copyBtn.addEventListener('click', copy);
 function closeModalMyProfile() {
   modalMyProfile.classList.add('none');
   overlay.classList.add('none');
+  overlay.classList.remove('overlay-for-modal');
 }
 
 function changeMyProfile() {
@@ -678,6 +685,7 @@ overlay.addEventListener('click', closeModalBuyCard);
 function closeModalBuyCard() {
   modalBuyCard.classList.add('none');
   overlay.classList.add('none');
+  overlay.classList.remove('overlay-for-modal');
 }
 
 const buyCardForm = document.querySelector('.js-buy-card-form');
@@ -847,7 +855,6 @@ const books = [
 
 /*
 осталось сделать
-- Окно регистрации, логин, профиль и покупки абонемента центрировано, а область вокруг затемнена (надо затемнить кнопку профиля и кнопку бургер меню)
 - В случае если имя и фамилия слишком длинные и не влазят в блок то должен произойти перенос фамилии на следующую строку
 - Модальное окно BUY A LIBRARY CARD
 

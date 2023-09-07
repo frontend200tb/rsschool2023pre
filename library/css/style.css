@@ -229,13 +229,6 @@ header__icons
   cursor: pointer;
 }
 
-.login__btn:hover,
-.register__btn:hover,
-.myprofile__btn:hover,
-.logout__btn:hover {
-  background-color: #eee;
-}
-
 .header__icon-burger {
   display: none;
 }
@@ -1299,8 +1292,12 @@ OVERLAY
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
   z-index: 10;
+}
+
+.overlay-for-modal {
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 /*********************
 /OVERLAY
@@ -1347,10 +1344,10 @@ MODAL REGISTER
   width: 250px;
   height: 382px;
   position: fixed;
-  top: calc(50% - 191px);
+  top: calc(50% - (382px / 2));
   left: calc(50% - 125px);
   background-color: #fff;
-  z-index: 11;
+  z-index: 21;
 }
 
 .register__close-wrapper {
@@ -1466,10 +1463,10 @@ MODAL LOGIN
   width: 250px;
   height: 262px;
   position: fixed;
-  top: calc(50% - 191px);
+  top: calc(50% - (262px / 2));
   left: calc(50% - 125px);
   background-color: #fff;
-  z-index: 11;
+  z-index: 21;
 }
 
 .login__close-wrapper {
@@ -1583,9 +1580,9 @@ MODAL MY PROFILE
   width: 600px;
   height: 400px;
   position: fixed;
-  top: calc(50% - 200px);
+  top: calc(50% - (400px / 2));
   left: calc(50% - 300px);
-  z-index: 11;
+  z-index: 21;
 }
 
 .myprofile__wrapper {
@@ -1802,9 +1799,9 @@ MODAL BUY A LIBRARY CARD
   width: 650px;
   height: 540px;
   position: fixed;
-  top: calc(50% - 270px);
+  top: calc(50% - (540px / 2));
   left: calc(50% - 325px);
-  z-index: 11;
+  z-index: 21;
   border: 1px solid black;
   background-color: #fff;
 }
