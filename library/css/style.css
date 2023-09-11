@@ -229,6 +229,13 @@ header__icons
   cursor: pointer;
 }
 
+.login__btn:hover,
+.register__btn:hover,
+.myprofile__btn:hover,
+.logout__btn:hover {
+  color: var(--gold);
+}
+
 .header__icon-burger {
   display: none;
 }
