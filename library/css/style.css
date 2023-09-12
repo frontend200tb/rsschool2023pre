@@ -1038,6 +1038,7 @@ LIBRARY CARDS
   line-height: 50px;
   letter-spacing: 0.6px;
   text-align: left;
+  color: var(--gold);
   border-radius: 10px;
   border-style: none;
 }
@@ -1053,6 +1054,7 @@ LIBRARY CARDS
   line-height: 50px;
   letter-spacing: 0.6px;
   text-align: left;
+  color: var(--gold);
   border-radius: 10px;
   border-style: none;
 }
@@ -1097,13 +1099,15 @@ LIBRARY CARDS
   letter-spacing: 0.2px;
 }
 
-.library__get {
+.library__get,
+.library__visit {
   width: 470px;
   text-align: right;
 }
 
 @media (max-width: 1024px) {
-  .library__get {
+  .library__get,
+  .library__visit {
     width: 600px;
     text-align: center;
   }

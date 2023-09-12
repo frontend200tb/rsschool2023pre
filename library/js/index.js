@@ -263,8 +263,10 @@ function rentBook(event) {
 
 /* My profile button */
 const myprofileBtn = document.querySelector('.js-myprofile-btn');
+const profileLibBtn = document.querySelector('.js-lib-profile-btn');
 
 myprofileBtn.addEventListener('click', openModalMyProfile);
+profileLibBtn.addEventListener('click', openModalMyProfile);
 
 function openModalMyProfile() {
   closeProfile();
@@ -288,6 +290,7 @@ function logOut() {
   // кнопки Buy в начальное состояние
   defaultBuyBtns();
   closeProfile();
+  closeLibraryVisit();
 }
 
 function defaultProfileIcon() {
@@ -385,6 +388,7 @@ function registerCheck(event) {
   logStatus = 'logIn';
   profileWithAuth();
   closeModalRegister();
+  openLibraryVisit();
 }
 
 function createUser() {
@@ -525,6 +529,7 @@ function loginCheck(event) {
     logStatus = 'logIn';
     profileWithAuth();
     closeModalLogin();
+    openLibraryVisit();
   };
 }
 
@@ -703,10 +708,30 @@ function buyCard(event) {
   localStorage.setItem('library', JSON.stringify(users));
   closeModalBuyCard();
 }
-
 /*********************
 /BUY A LIBRARY CARD
 *********************/
+
+
+/*********************
+VISIT YOUR PROFILE
+*********************/
+const LibraryGet = document.querySelector('.js-lib-get');
+const LibraryVisit = document.querySelector('.js-lib-visit');
+
+function openLibraryVisit() {
+  LibraryGet.classList.add('none');
+  LibraryVisit.classList.remove('none');
+}
+
+function closeLibraryVisit() {
+  LibraryVisit.classList.add('none');
+  LibraryGet.classList.remove('none');
+}
+/*********************
+/VISIT YOUR PROFILE
+*********************/
+
 
 /*********************
 LOCAL STORAGE
