@@ -278,35 +278,7 @@ function openModalMyProfile() {
 
 /* Log Out button */
 const logoutBtn = document.querySelector('.js-logout-btn');
-
 logoutBtn.addEventListener('click', logOut);
-
-function logOut() {
-  logStatus = 'logOut';
-  hasCard = false;
-  console.log('log out');
-  defaultProfileIcon();
-  profileNoAuth();
-  // кнопки Buy в начальное состояние
-  defaultBuyBtns();
-  closeProfile();
-  closeLibraryVisit();
-}
-
-function defaultProfileIcon() {
-  profileBtn.classList.add('profile-icon-default');
-  profileBtn.innerText = '';
-  profileBtn.removeAttribute('title');
-}
-
-function profileNoAuth() {
-  loginBtn.classList.remove('none');
-  registerBtn.classList.remove('none');
-  myprofileBtn.classList.add('none');
-  logoutBtn.classList.add('none');
-  profileTitle.innerText = 'Profile';
-  profileTitle.style.fontSize = '15px';
-}
 /* /Log Out button */
 
 overlay.addEventListener('click', closeProfile);
@@ -378,6 +350,10 @@ function registerCheck(event) {
     pswRegisterTooltip.classList.remove('none');
     return;
   }
+  register();
+}
+
+function register() {
   createUser();
   // иконку профиля меняем на инициалы юзера
   changeProfileIcon(currentUser.fname, currentUser.lname);
@@ -389,6 +365,7 @@ function registerCheck(event) {
   profileWithAuth();
   closeModalRegister();
   openLibraryVisit();
+  openCardInfo();
 }
 
 function createUser() {
@@ -513,24 +490,29 @@ function loginCheck(event) {
     return;
   }
   if (hasUserLogin()) {
-    currentUser = hasUserLogin();
-    // при каждом логине увеличиваем счетчик посещений
-    currentUser.visitCounter++;
-    // записываем в local storage массив юзеров
-    localStorage.setItem('library', JSON.stringify(users));
-    // иконку профиля меняем на инициалы юзера
-    changeProfileIcon(currentUser.fname, currentUser.lname);
-    // обновляем данные в модальном окне My Profile
-    changeMyProfile();
-    // обновляем данные в Check the card
-    changeCheckCard();
-    // обновляем кнопки Buy
-    changeBuyBtns();
-    logStatus = 'logIn';
-    profileWithAuth();
-    closeModalLogin();
-    openLibraryVisit();
+    logIn();
   };
+}
+
+function logIn() {
+  currentUser = hasUserLogin();
+  // при каждом логине увеличиваем счетчик посещений
+  currentUser.visitCounter++;
+  // записываем в local storage массив юзеров
+  localStorage.setItem('library', JSON.stringify(users));
+  // иконку профиля меняем на инициалы юзера
+  changeProfileIcon(currentUser.fname, currentUser.lname);
+  // обновляем данные в модальном окне My Profile
+  changeMyProfile();
+  // обновляем данные в Check the card
+  changeCheckCard();
+  // обновляем кнопки Buy
+  changeBuyBtns();
+  logStatus = 'logIn';
+  profileWithAuth();
+  closeModalLogin();
+  openLibraryVisit();
+  openCardInfo();
 }
 
 function hasUserLogin() {
@@ -554,13 +536,41 @@ function changeBuyBtns() {
 /*********************
 LOG OUT
 *********************/
+
+function logOut() {
+  logStatus = 'logOut';
+  hasCard = false;
+  console.log('log out');
+  defaultProfileIcon();
+  profileNoAuth();
+  // кнопки Buy в начальное состояние
+  defaultBuyBtns();
+  closeProfile();
+  closeLibraryVisit();
+  closeCardInfo();
+}
+
+function defaultProfileIcon() {
+  profileBtn.classList.add('profile-icon-default');
+  profileBtn.innerText = '';
+  profileBtn.removeAttribute('title');
+}
+
+function profileNoAuth() {
+  loginBtn.classList.remove('none');
+  registerBtn.classList.remove('none');
+  myprofileBtn.classList.add('none');
+  logoutBtn.classList.add('none');
+  profileTitle.innerText = 'Profile';
+  profileTitle.style.fontSize = '15px';
+}
+
 function defaultBuyBtns() {
   buyBtns.forEach(elem => {
       elem.innerText = 'Buy';
       elem.classList.remove('own');
   })
 }
-
 /*********************
 /LOG OUT
 *********************/
@@ -666,6 +676,20 @@ function checkCard(event) {
   } else {
     console.log('no');
   }
+}
+
+function openCardInfo() {
+  checkCardBtn.classList.add('none');
+  cardStat.classList.remove('none');
+  checkCardNameInput.value = currentUser.fname;
+  checkCardNumberInput.value = currentUser.cardNumber;
+}
+
+function closeCardInfo() {
+  cardStat.classList.add('none');
+  checkCardBtn.classList.remove('none');
+  checkCardNameInput.value = '';
+  checkCardNumberInput.value = '';
 }
 
 function hasUser() {
