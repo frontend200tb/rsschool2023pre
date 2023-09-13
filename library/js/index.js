@@ -707,6 +707,10 @@ BUY A LIBRARY CARD
 *********************/
 const modalBuyCard = document.querySelector('.js-modal__buy-card');
 const buyCardCloseBtn = modalBuyCard.querySelector('.js-buy-card-close-btn');
+const cardNumber = modalBuyCard.querySelector('.js-number-input');
+const expCode1 = modalBuyCard.querySelector('.js-expcode1-input');
+const expCode2 = modalBuyCard.querySelector('.js-expcode2-input');
+const cvc = modalBuyCard.querySelector('.js-code-input');
 
 buyCardCloseBtn.addEventListener('click', closeModalBuyCard);
 overlay.addEventListener('click', closeModalBuyCard);
@@ -720,10 +724,32 @@ function closeModalBuyCard() {
 const buyCardForm = document.querySelector('.js-buy-card-form');
 const buyCardBtn = buyCardForm.querySelector('.js-buy-card-btn');
 
-buyCardForm.addEventListener('submit', event => buyCard(event));
+buyCardForm.addEventListener('submit', event => checkCard(event));
 
-function buyCard(event) {
+function checkCard(event) {
   event.preventDefault();
+  console.log('checkCard');
+  if (!cardNumber.value.match(/^\d{16}$/)) {
+    //Если три цифры в начале строки и в конце строки
+    return;
+  }
+  if (!expCode1.value.match(/^\d{2}$/)) {
+    //Если три цифры в начале строки и в конце строки
+    return;
+  }
+  if (!expCode2.value.match(/^\d{2}$/)) {
+    //Если три цифры в начале строки и в конце строки
+    return;
+  }
+  if (!cvc.value.match(/^\d{3}$/)) {
+    //Если три цифры в начале строки и в конце строки
+    return;
+  }
+  buyCard();
+}
+
+function buyCard() {
+  console.log('buyCard');
   if (currentUser.hasCard === true) {
     console.log('already has a card');
     return;
