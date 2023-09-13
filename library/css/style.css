@@ -454,13 +454,10 @@ ABOUT
   padding: 5px;
   width: 26px;
   height: 26px;
-}
-
-.carousel__btn:hover {
   cursor: pointer;
 }
 
-.carousel__btn.btn-active:hover {
+.carousel__btn.btn-active {
   cursor: auto;
 }
 
@@ -478,10 +475,6 @@ ABOUT
 @media (max-width: 1024px) {
   .carousel__btn:nth-child(5) {
     display: block;
-  }
-
-  .carousel__btn:hover {
-    cursor: auto;
   }
 }
 

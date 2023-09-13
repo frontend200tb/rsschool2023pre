@@ -92,9 +92,6 @@ function rightClickCarret() {
 }
 
 function circleBtnClick(i) {
-  if ( !(getComputedStyle(circleBtn[4]).display === 'none') || (circleBtn[i] === currentBtn) ) {
-    return
-  }
   currentBtn.classList.remove('btn-active');
   currentBtn = circleBtn[i];
   currentBtn.classList.add('btn-active');
@@ -106,17 +103,21 @@ function circleBtnClick(i) {
   } else {
     carretLeft.classList.remove('carret-disable');
   }
+  if (currentImg === 4) {
+    carretRight.classList.add('carret-disable');
+  } else {
+    carretRight.classList.remove('carret-disable');
+  }
 }
 
 function resize() {
-  console.log(currentImg);
   if ( (getComputedStyle(circleBtn[3]).display === 'none') && (currentImg === 3) ) {
     carretLeft.classList.remove('carret-disable');
-    leftClick();
+    leftClickCarret();
     return;
   }
   if ( (getComputedStyle(circleBtn[4]).display === 'none') && (currentImg === 4) ) {
-    leftClick();
+    leftClickCarret();
     return;
   }
 }
