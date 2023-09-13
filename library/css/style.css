@@ -454,13 +454,10 @@ ABOUT
   padding: 5px;
   width: 26px;
   height: 26px;
-}
-
-.carousel__btn:hover {
   cursor: pointer;
 }
 
-.carousel__btn.btn-active:hover {
+.carousel__btn.btn-active {
   cursor: auto;
 }
 
@@ -478,10 +475,6 @@ ABOUT
 @media (max-width: 1024px) {
   .carousel__btn:nth-child(5) {
     display: block;
-  }
-
-  .carousel__btn:hover {
-    cursor: auto;
   }
 }
 
@@ -1807,11 +1800,11 @@ MODAL MY PROFILE
 MODAL BUY A LIBRARY CARD
 *********************/
 .modal__buy-card {
-  width: 650px;
+  width: 640px;
   height: 540px;
   position: fixed;
   top: calc(50% - (540px / 2));
-  left: calc(50% - 325px);
+  left: calc(50% - (640px / 2));
   z-index: 21;
   border: 1px solid black;
   background-color: #fff;
@@ -1821,7 +1814,6 @@ MODAL BUY A LIBRARY CARD
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 650px;
   height: 60px;
   font-family: 'Forum', serif;
   font-weight: 400;
@@ -1924,6 +1916,7 @@ MODAL BUY A LIBRARY CARD
   font-size: 15px;
   line-height: 20px;
   letter-spacing: 2px;
+  color: var(--gray);
 }
 /*********************
 /MODAL BUY A LIBRARY CARD
